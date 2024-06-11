@@ -5,7 +5,7 @@ Segundo trabajo practico a entregar para la materia de Introduccion al desarroll
 # INTRODUCCION AL DESARROLLO DE SOFTWARE 
 ## Catedra Camejo
 
-### Links a la pagina del proyecto
+### Link a la pagina del proyecto
 
 ### [LINK NETLIFY](https://ferreiro-cac-movies.netlify.app)
 
