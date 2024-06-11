@@ -3,7 +3,7 @@ Segundo trabajo practico a entregar para la materia de Introduccion al desarroll
 
 
 # INTRODUCCION AL DESARROLLO DE SOFTWARE 
-## Comisión 23507
+## Catedra Camejo
 
 ### Links a la pagina del proyecto
 
