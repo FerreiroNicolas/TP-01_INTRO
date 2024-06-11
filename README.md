@@ -34,6 +34,7 @@ Es un sitio que cuenta con las siguientes secciones:
 + Tendencias
 + Registrarse
 + Iniciar sesion 
++ Conexion API
 
 #### Repositorio a Git-Hub
 
