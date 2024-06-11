@@ -37,7 +37,7 @@ Es un sitio que cuenta con las siguientes secciones:
 
 #### Repositorio a Git-Hub
 
-- **[Repositorio](git@github.com:FerreiroNicolas/TP-01_INTRO.git)**
+- **[Repositorio](https://git@github.com:FerreiroNicolas/TP-01_INTRO.git)**
 
 ---
 
