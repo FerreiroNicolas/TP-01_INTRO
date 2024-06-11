@@ -1,8 +1,8 @@
 # INTRODUCCION AL DESARROLLO DE SOFTWARE 
+# TP-01 - Implementacion front + back + base de datos
 
 Segundo trabajo practico a entregar para la materia de Introduccion al desarrollo de software para la carrera de Ingenieria Informatica en la Universidad de Buenos Aires.
 
-# TP-01 - Implementacion front + back + base de datos
 ## Catedra Camejo
 
 ### Link a la pagina del proyecto
