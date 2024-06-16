@@ -124,9 +124,10 @@ nav ul li a {
 
 .detalle {
     position: relative;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/mario2.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/cine.jpg');
     background-size: cover;
     background-position: center;
+    top: 2em;   
     padding: 50px;
     color: white;
     border-radius: 20px;
@@ -290,6 +291,8 @@ nav ul li a {
     
     .imgDetalle img {
         margin-bottom: 20px;
+        width: 300px;
+        height: 500px;
     }
 
     .textoDetalle {

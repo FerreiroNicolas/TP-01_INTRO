@@ -1,4 +1,3 @@
-import sys
 from flask import Flask,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -12,7 +11,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 db = SQLAlchemy(app)
 
 CORS(app)
-
 
 
 class catalogo(db.Model):
@@ -43,6 +41,24 @@ def obtener_peliculas():
                 'nombre_de_pelicula': pelicula.nombre_de_pelicula,
                 'url_imagen': pelicula.url_imagen,
                 'año_de_estreno': pelicula.año_de_estreno,
+            }
+            peliculas_json.append(pelicula_dict)
+        return jsonify({'peliculas': peliculas_json})
+    except Exception as error:
+        print('Error', error)
+        return jsonify({'message': 'Internal server error'}), 500
+    
+
+@app.route("/detalle/detalle.html<id>", methods=['GET'])
+def mostrar_peliculas(id):
+    try:
+        pelicula = catalogo.query.get(id)
+        if pelicula:
+            pelicula_dict = {
+                'id': pelicula.id,
+                'nombre_de_pelicula': pelicula.nombre_de_pelicula,
+                'url_imagen': pelicula.url_imagen,
+                'año_de_estreno': pelicula.año_de_estreno,
                 'genero': pelicula.genero,
                 'duracion': pelicula.duracion,
                 'sinopsis': pelicula.sinopsis,
@@ -53,8 +69,7 @@ def obtener_peliculas():
                 'puntaje_segun_critica': pelicula.puntaje_segun_critica,
                 'url_trailer': pelicula.url_trailer
             }
-            peliculas_json.append(pelicula_dict)
-        return jsonify({'peliculas': peliculas_json})
+        return jsonify({'peliculas': pelicula_dict})
     except Exception as error:
         print('Error', error)
         return jsonify({'message': 'Internal server error'}), 500
