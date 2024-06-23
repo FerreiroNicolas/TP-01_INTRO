@@ -41,7 +41,7 @@ function buscar_data(data) {
         </section>
         <section class="trailer" data-aos="fade-up" data-aos-offset="400" data-aos-delay="50" data-aos-duration="1000">
             <div class="contenedorTrailer">
-                <h2>Mira su trailer aquí abajo</h2>
+                <h2>Mira el trailer aquí abajo</h2>
                 <iframe width="560" height="315" src="${movie.url_trailer}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
             </div>
             <div class="contenedorInfo">
