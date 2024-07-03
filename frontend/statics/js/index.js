@@ -45,4 +45,3 @@ fetch('http://localhost:5000/index.html')
     .then(response_recibed)
     .then(data_inicio)
     .catch(request_error);
-
