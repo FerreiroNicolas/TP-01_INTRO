@@ -6,6 +6,7 @@
     <title>CAC-Movies</title>
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="statics/agregar_peliculas.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
     <header class="header">
@@ -121,6 +122,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Agregar Película</button>
                     </form>
+                    <div id="mensaje-exito" class="alert alert-success d-none" role="alert">
+                        La película se agregó correctamente.
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,8 +134,9 @@
         <div class="row" id="api-movies"></div>
     </div>
 
-    <script src="statics/js/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="statics/js/api.js"></script>
 </body>
 <footer class="footer">
     <nav>
@@ -144,6 +149,3 @@
     </nav>
 </footer>
 </html>
-
-
-

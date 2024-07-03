@@ -479,22 +479,34 @@ nav ul li a {
     opacity: 1;
 }
 
-/* Estilos para el botón de agregar película */
+
 .btn-primary {
-    width: 100%; /* Ancho completo */
-    padding: 10px; /* Espaciado interno */
-    background-color: #ff607d; /* Color de fondo personalizado */
-    border-color: #ff607d;/* Borde del mismo color */
-    color: white; /* Color del texto */
+    width: 100%; 
+    padding: 10px; 
+    background-color: #ff607d; 
+    border-color: #ff607d;
+    color: white; 
     font-weight: bold;
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de puntero */
+    border-radius: 5px; 
+    cursor: pointer; 
 }
 
 .btn-primary:hover {
     color: #e65570;
-    background-color: #212529; /* Color de fondo cuando se pasa el mouse */
-    border-color: #e65570; /* Borde cuando se pasa el mouse */
+    background-color: #212529; 
+    border-color: #e65570; 
+}
+#mensaje-exito {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    display: none; 
+    text-align: center; 
 }
 
 @media (max-width: 768px) {

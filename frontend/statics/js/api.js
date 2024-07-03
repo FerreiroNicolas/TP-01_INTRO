@@ -77,7 +77,6 @@ fetch('http://localhost:5000/api.html')
     .then(response_recibed)
     .then(data)
     .catch(request_error);
-
 // Función para agregar película
 document.getElementById('form-agregar-pelicula').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
@@ -116,13 +115,28 @@ document.getElementById('form-agregar-pelicula').addEventListener('submit', func
         cargarPeliculas(); // Vuelve a cargar la lista de películas
 
         // Cerrar el modal usando Bootstrap 5
-        var modalElement = new bootstrap.Modal(document.getElementById('modalAgregarPelicula'));
+        var modalElement = bootstrap.Modal.getInstance(document.getElementById('modalAgregarPelicula'));
         modalElement.hide();
+        
+        // Mostrar mensaje de éxito usando SweetAlert2
+        Swal.fire({
+            title: 'Película agregada',
+            text: 'La película se agregó correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
 
     })
     .catch(error => {
         console.error('Error al agregar película:', error);
-        alert('Error al agregar película, por favor inténtalo de nuevo.');
+
+        // Mostrar mensaje de error usando SweetAlert2
+        Swal.fire({
+            title: 'Error',
+            text: 'Error al agregar película, por favor inténtalo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
     });
 });
 

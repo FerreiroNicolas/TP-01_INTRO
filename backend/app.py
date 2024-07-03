@@ -88,7 +88,7 @@ def mostrar_peliculas():
         return jsonify({'message': 'Internal server error'}), 500
     
 
-@app.route("/detalle/detalle.html<id>", methods=['GET'])
+@app.route("/detalle/detalle.html/<int:id>", methods=['GET'])
 def obtener_pelicula(id):
     try:
         pelicula = catalogo.query.get(id)
@@ -106,12 +106,15 @@ def obtener_pelicula(id):
                 'productora': pelicula.productora,
                 'pais_de_origen': pelicula.pais_de_origen,
                 'puntaje_segun_critica': pelicula.puntaje_segun_critica,
-                'url_trailer': pelicula.url_trailer
+                'url_trailer': pelicula.url_trailer,
+                'es_tendencia': pelicula.es_tendencia
             }
-        return jsonify({'peliculas': pelicula_dict})
+            return jsonify({'pelicula': pelicula_dict}), 200
+        else:
+            return jsonify({'message': 'Película no encontrada'}), 404
     except Exception as error:
-        print('Error', error)
-        return jsonify({'message': 'Internal server error'}), 500
+        print('Error:', error)
+        return jsonify({'message': 'Error interno del servidor'}), 500
 
 @app.route("/api.html", methods=['POST'])
 def agregar_pelicula():
@@ -155,6 +158,53 @@ def agregar_pelicula():
     except Exception as error:
         print('Error', error)
         return jsonify({'message': 'Internal server error, eres un pendejo jhon'}), 500
+
+
+@app.route("/detalle/detalle.html/<int:id>", methods=['PUT'])
+def modificar_pelicula(id):
+    try:
+        data = request.json
+        pelicula = catalogo.query.get(id)
+
+        if pelicula:
+            pelicula.nombre_de_pelicula = data.get('nombre_de_pelicula', pelicula.nombre_de_pelicula)
+            pelicula.url_imagen = data.get('url_imagen', pelicula.url_imagen)
+            pelicula.año_de_estreno = data.get('año_de_estreno', pelicula.año_de_estreno)
+            pelicula.genero = data.get('genero', pelicula.genero)
+            pelicula.duracion = data.get('duracion', pelicula.duracion)
+            pelicula.sinopsis = data.get('sinopsis', pelicula.sinopsis)
+            pelicula.director = data.get('director', pelicula.director)
+            pelicula.actores_principales = data.get('actores_principales', pelicula.actores_principales)
+            pelicula.productora = data.get('productora', pelicula.productora)
+            pelicula.pais_de_origen = data.get('pais_de_origen', pelicula.pais_de_origen)
+            pelicula.puntaje_segun_critica = data.get('puntaje_segun_critica', pelicula.puntaje_segun_critica)
+            pelicula.url_trailer = data.get('url_trailer', pelicula.url_trailer)
+            pelicula.es_tendencia = data.get('es_tendencia', pelicula.es_tendencia)
+
+            db.session.commit()
+            return jsonify({'pelicula': {
+                'id': pelicula.id,
+                'nombre_de_pelicula': pelicula.nombre_de_pelicula,
+                'url_imagen': pelicula.url_imagen,
+                'año_de_estreno': pelicula.año_de_estreno,
+                'genero': pelicula.genero,
+                'duracion': pelicula.duracion,
+                'sinopsis': pelicula.sinopsis,
+                'director': pelicula.director,
+                'actores_principales': pelicula.actores_principales,
+                'productora': pelicula.productora,
+                'pais_de_origen': pelicula.pais_de_origen,
+                'puntaje_segun_critica': pelicula.puntaje_segun_critica,
+                'url_trailer': pelicula.url_trailer,
+                'es_tendencia': pelicula.es_tendencia
+            }}), 200
+        else:
+            return jsonify({'message': 'Película no encontrada'}), 404
+    except Exception as error:
+        print('Error:', error)
+        return jsonify({'message': 'Error interno del servidor'}), 500
+
+
 
 
 if __name__ == '__main__':
