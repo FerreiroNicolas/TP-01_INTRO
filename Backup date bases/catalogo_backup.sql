@@ -59,6 +59,51 @@ ALTER TABLE public.catalogo ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
+-- Name: opiniones; Type: TABLE; Schema: public; Owner: joacoeze
+--
+
+CREATE TABLE public.opiniones (
+    id integer NOT NULL,
+    id_pelicula integer NOT NULL,
+    opinion text NOT NULL,
+    puntaje numeric(3,1) NOT NULL,
+    fecha_opinion timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT opiniones_puntaje_check CHECK (((puntaje >= (0)::numeric) AND (puntaje <= (10)::numeric)))
+);
+
+
+ALTER TABLE public.opiniones OWNER TO joacoeze;
+
+--
+-- Name: opiniones_id_seq; Type: SEQUENCE; Schema: public; Owner: joacoeze
+--
+
+CREATE SEQUENCE public.opiniones_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.opiniones_id_seq OWNER TO joacoeze;
+
+--
+-- Name: opiniones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: joacoeze
+--
+
+ALTER SEQUENCE public.opiniones_id_seq OWNED BY public.opiniones.id;
+
+
+--
+-- Name: opiniones id; Type: DEFAULT; Schema: public; Owner: joacoeze
+--
+
+ALTER TABLE ONLY public.opiniones ALTER COLUMN id SET DEFAULT nextval('public.opiniones_id_seq'::regclass);
+
+
+--
 -- Data for Name: catalogo; Type: TABLE DATA; Schema: public; Owner: joacoeze
 --
 
@@ -95,9 +140,12 @@ COPY public.catalogo (id, nombre_de_pelicula, url_imagen, "año_de_estreno", gen
 105	Wolverine: Inmortal	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQxE8J3INec1kZ_O0SSIvbEBUaAlj8PEaiAg&s	2013	Superhéroes, Acción y Ciencia ficción.	138	Logan consigue salvarse y rescata a un oficial japonés, de la explosion de la bomba nuclear en Hiroshima. Años mas adelante, este oficial mandará a una joven a localizarlo. Logan se deberá enfrentar a un samurai de acero, mientras en su interior se lucha contra su propia inmortalidad.	James Mangold	Hugh Jackman, Tao Okamoto, Rila Fukushima, Hiroyuki Sanada, Svetlana Khodchenkova, Will Yun Lee, Famke Janssen, Haruhiko Yamanouchi y Brian Tee.	20th Century Fox	Estados Unidos	5.3	https://www.youtube.com/embed/ctPXSwPXqPQ?si=dpKxixdu-G-w4ZIi	f
 10	Batman: El caballero de la noche asciende	https://4.bp.blogspot.com/-vB5oaWxf8Bk/T770TbwDYRI/AAAAAAAAIu0/ruomxPV_Nqs/s1600/TDKRises_Poster.jpg	2012	Acción, Crimen, Drama y Suspenso.	165	Hace ya ocho años desde que Batman se convirtió en fugitivo al asumir la muerte de Harvey. La dura Ley Dent sigue aplacando la criminalidad de Gotham, aunque la llegada de una gata ladrona y un misterioso terrorista enmascarado lo cambiará todo.	Christopher Nolan	Christian Bale, Michael Caine, Gary Oldman, Anne Hathaway, Tom Hardy, Marion Cotillard, Joseph Gordon-Levitt, Morgan Freeman y Liam Neeson	Warner Bros. Pictures	Estados Unidos	7.5	https://www.youtube.com/embed/c_BZOsbX3MI?si=HerPhP6X54V8s74m	f
 111	La odisea de los giles	https://es.web.img3.acsta.net/pictures/19/09/12/11/42/0387659.jpg	2019	Drama y Aventura	116	Un grupo de vecinos se organiza para llevar a cabo un provecto que ayude a paliar la crisis. Sin embargo en medio de este corralito en el que son víctimas de un abogado y un banquero, se organizarán para planear cómo recuperar sus ahorros.	Sebastián Borensztein	Ricardo Darín, Luis Brandoni, Chino Darín, Verónica Llinás, Daniel Aráoz, Carlos Belloso, Rita Cortese, Andrés Parra, Marco Antonio Caponi, Alejandro Gigena y Guillermo Jacubowicz.	Mod Producciones	Argentina	6.6	https://www.youtube.com/embed/ZP_o6GQaFW8?si=g3dNSa8XgnLAZ5Ge	f
+157	Django sin cadenas	https://es.web.img2.acsta.net/medias/nmedia/18/92/38/67/20383018.jpg	2012	Drama	165	Un antiguo esclavo une sus fuerzas con un cazador de recompensas alemán que lo libera y ayuda a cazar a los criminales más buscados del Sur, todo ello con la esperanza de encontrar a su esposa perdida hace mucho tiempo.	Quentin Tarantino	Jamie Foxx, Christoph Waltz, Leonardo DiCaprio, Kerry Washington y  Samuel L. Jackson.	Columbia Pictures	EStados Unidos	7.9	https://www.youtube.com/embed/CLofzNkIqAc?si=j1cUs6SiyR0yXrMg	f
 33	Terminator 3: Rise Of The Machines 	https://m.media-amazon.com/images/M/MV5BMTk5NzM1ODgyN15BMl5BanBnXkFtZTcwMzA5MjAzMw@@._V1_.jpg	2003	Ciencia ficcion y Acción.	109	Un robot de un futuro postapocalíptico viaja en el tiempo con la misión de proteger a John Connor y a su futura esposa de un modelo cibernético más sofisticado que ha sido enviado para matarlo y asegurar el triunfo de las máquinas sobre los humanos.	Jonathan Mostow.	Arnold Schwarzenegger, Nick Stahl, Claire Danes, Kristanna Loken y David Andrews.	C2 Pictures	Estados Unidos	5.2	https://www.youtube.com/embed/5UgPJhyJmlM?si=62XZ7DEDcg0OJDeO	f
 34	Terminator Salvation 	https://m.media-amazon.com/images/M/MV5BODBlOTJhZjItMGRmYS00YzM1LWFmZTktOTJmNDMyZTBjMjBkXkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_FMjpg_UX1000_.jpg	2009	Ciencia ficcion y Acción.	118	Mientras las máquinas se preparan para un ataque final, John Connor y un extraño entran en el corazón de Skynet y descubren que va a haber una terrible masacre.	Joseph McGinty Nichol.	Christian Bale, Sam Worthington, Anton Yelchin, Bryce Dallas Howard, Moon Bloodgood, Common, Helena Bonham Carter y Michael Ironside.	The Halcyon Company	Estados Unidos	5.9	https://www.youtube.com/embed/-Czz-TcWCkA?si=uSKy6OcMzCYdW9eG	f
 116	Duna: Parte uno	https://www.mmx.com.ar/wp-content/uploads/old/dune_parte_2.jpg	2021	Ciencia ficción y Épica	156	En un futuro lejano, en medio de imperios interestelares feudales en expansión, hay planetas controlados por casas nobles e innobles. Sin embargo, "Dune" se basa en las relaciones y las luchas humanas. La película trata sobre personas reales y temas complejos como la ecología, la evolución y la supervivencia, y también las batallas diarias que libran los seres humanos en torno al amor, la lealtad y el deber, la traición, el poder... sobre nosotros mismos. "Dune" es un espejo de la sociedad en la que vivimos hoy.\nVilleneuve descubrió que "hay muchas formas de abordar la historia de Dune, pero una de ellas, uno de los ángulos principales, es la historia muy humana de la familia Atreides que cae en la trampa que le tiende el Emperador, que está cada vez más celoso de su creciente popularidad. Es entonces cuando el Emperador envía a los Atreides a un nuevo planeta de la galaxia, Arrakis, donde se puede encontrar la Especia, la sustancia más preciada del universo".	Denis Villeneuve	Timothée Chalamet, Rebecca Ferguson, Oscar Isaac, Josh Brolin,Stellan Skarsgård Dave Bautista, Stephen McKinley Henderson, Zendaya Chang Chen, Sharon Duncan-Brewster, David Dastmalchian, ,Charlotte Rampling , Jason Momoa y Javier Bardem.	Warner Bros. Pictures	Estados Unidos, Hungría y CAnada	7.2	https://www.youtube.com/embed/TTgk_iT8Uts?si=YJTx5mTKM2dHbfwh" title="YouTube video player	f
+158	Cars	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuUKJN1SWGTE77FybwEN4gEuORrsjBkeR2TA&s	2006	Animación	117	El aspirante a campeón de carreras Rayo McQueen parece que está a punto de conseguir el éxito. Su actitud arrogante se desvanece cuando llega a una pequeña comunidad olvidada que le enseña las cosas importantes de la vida que había olvidado.	John Lasseter	Owen Wilson, Larry the, Cable Guy, Bonnie Hunt, Paul Newman y Cheech Marín.	Walt Disney Pictures y Pixar Animation Studios.	Estados Unidos	6.2	https://www.youtube.com/embed/nuQDFYpPUh4?si=zBn-lPIoolkzNM4W	f
+159	cars 2	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ206zKdvC-uh2Z-uVdGWH0GeTww4mkFnhaBw&s	2011	animacion	107	Rayo McQueen y la grúa Mate viajan al extranjero para participar en el primer Campeonato Mundial en el que se decidirá cuál es el coche más rápido de la tierra. Mate se convertirá en un espía secreto y McQueen competirá contra los mejores coches. El campeonato los llevará a Japón, París, Londres y por último, a Italia. Sin embargo, estarán muy ocupados para poder disfrutar de los placeres de cada lugar.	John Lasseter	Larry the Cable, Guy Owen, Wilson Michael, Caine Emily, Mortimer Eddie, Izzard John, Turturro Bonnie, Hunt Katherine y  Helmond Cheech Marín.	Walt Disney Pictures y Pixar Animation Studios.	EE.UU.	5.5	https://www.youtube.com/embed/XE69_pIrFZQ?si=cIzdQ3k7GWIZTsSA	f
 42	Volver al futuro III	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtuVvd8yahD-VoRYT__hJhCZd9LhPto0rHmA&s	1990	Ciencia Ficcion,Comedia, Western y Aventura	119	Marty McFly sigue en 1955 y Doc ha retrocedido al año 1885, la época del salvaje oeste. Marty recibe una carta de Doc en la que le informa de que la máquina del tiempo está averiada y no puede volver al presente, pero que no le importa seguir en el pasado. Sin embargo, Marty descubre una tumba en la que lee que Doc murió en 1885 y decide ir a rescatar a su amigo.	Robert Zemeckis.	Michael J. Fox, Christopher Lloyd, Mary Steenburgen, Thomas F. Wilson y Lea Thompson.	Universal Pictures	Estados Unidos	6.6	https://www.youtube.com/embed/WmBX7CA-AAc?si=JCRmc7nH4LFRtUae	f
 45	Alien 3	https://es.web.img3.acsta.net/c_310_420/medias/nmedia/18/78/65/71/20076549.jpg	1992	Ciencia Ficcion, Accion y Terror	114	Ripley libera a un grupo de convictos desarmados en un desesperado intento de matar al extraterrestre que los persigue.	David Fincher.	Sigourney Weaver, Lance Henriksen, Charles S. Dutton, Charles Dance, Paul McGann, Pete Postlethwaite.	20th Century Fox.	Estados Unidos	5.9	https://www.youtube.com/embed/O57vJ59Eq5Q?si=LfGIYf7ul3xkBZ9T	f
 47	Alien: Prometheus	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEgU31Gg4idLbAwDs4wYhxEe1UvKTxpsoBaDwqK9gJylNT75CXs01aLt9C2QnFlaWa7Ow&usqp=CAU	2012	Ciencia Ficcion y Terror	124	La acción comienza en un planeta sin vida humana aparente. Al borde de una cascada, un extraterrestre humanoide espera mientras una enorme nave espacial, que permanecía inmóvil, empieza a alejarse. El humanoide bebe un líquido negro burbujeante y empieza a desintegrarse. Cuando sus restos corporales caen por la cascada, el ADN del extraterrestre sufre una reacción biogenética.	Ridley Scott.	Noomi Rapace, Michael Fassbender, Charlize Theron, Idris Elba, Guy Pearce, Logan Marshall-Green	20th Century Fox.	Estados Unidos	5.8	https://www.youtube.com/embed/aUwNASUI4y8?si=j_qnWI-manoj9LrF	f
@@ -108,8 +156,8 @@ COPY public.catalogo (id, nombre_de_pelicula, url_imagen, "año_de_estreno", gen
 43	Alien 1: El octavo pasajero	https://images.justwatch.com/poster/9890794/s718/alien-el-octavo-pasajero.jpg	1979	Ciencia Ficcion y Terror	116	La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.	Robert Zemeckis.	Tom Skerritt, Sigourney Weaver, Veronica Cartwright, Harry Dean Stanton, John Hurt, Ian Holm, Yaphet Kotto, Bolaji Badejo.	20th Century Fox.	Estados Unidos	8.1	https://www.youtube.com/embed/6q0I-OqZP14?si=AcAI_p1enw_Aonn1	f
 51	Los juegos del hambre: Sinsajo- Parte 1	https://es.web.img3.acsta.net/pictures/14/09/12/10/51/011753.jpg	2014	Ciencia ficción, Acción, Drama y Distopía	146	Katniss Everdeen se encuentra en el Distrito 13 después de destrozar los juegos para siempre. Bajo el liderazgo de la comandante Coin y el consejo de sus amigos más leales, Katniss extiende sus alas mientras lucha por salvar a Peeta Mellark y a una nación alentada por su valentía.	Francis Lawrence	Sam Claflin, Jennifer Lawrence, Josh Hutcherson, Liam Hemsworth, Woody Harrelson, Elizabeth Banks, Julianne Moore, Jena Malone, Philip Seymour Hoffman, Stanley Tucci, Donald Sutherland	Warner Bros Pictures.	Estados Unidos	5.6	https://www.youtube.com/embed/3AuMlTD46tg?si=0wCday1XaHl2on-q	f
 58	Rescatando al soldado Ryan	https://es.web.img3.acsta.net/pictures/14/03/05/09/42/163621.jpg	1998	Bélico, Drama, Aventura, Cine belico y Épica.	169	Después de desembarcar en Normandía, en plena Segunda Guerra Mundial, unos soldados norteamericanos deben arriesgar sus vidas para salvar al soldado James Ryan, cuyos tres hermanos han muerto en la guerra.	Steven Spielberg	Tom Hanks, Tom Sizemore, Edward Burns, Matt Damon, Jeremy Davies, Adam Goldberg, Barry Pepper, Giovanni Ribisi y Vin Diesel.	Paramount Pictures y DreamWorks Pictures	Estados Unidos	7.8	https://www.youtube.com/embed/TAyhMtyup3o?si=W__2tqCevrQXvFp6	f
-155	Drive	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQFfl-TBaJqGZjYwvikB3-jTYzqrd9rpylYw&s	2011	Accion y suspenso	100	Un misterioso conductor especialista de cine y mecánico en un taller...	Nicolas Winding Refn	Ryan Gosling, Carey Mulligan, Bryan Cranston, Oscar Isaac, Albert Brooks, Christina Hendricks y  Ron Perlman.	MWM Studios	EE.UU.	7.2	https://www.youtube.com/embed/KBiOF3y1W0Y?si=LEd8mSDPYLvrmGGJ	f
 57	Forest Gump	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcp2IxZC1XOBPtu1KOifG2FKyu83jD1JsKBQ&s	1994	Comedia y Drama.	142	Sentado en un banco en Savannah, Georgia, Forrest Gump espera al autobús. Mientras éste tarda en llegar, el joven cuenta su vida a las personas que se sientan a esperar con él. Aunque sufre un pequeño retraso mental, esto no le impide hacer cosas maravillosas. Sin entender del todo lo que sucede a su alrededor, Forrest toma partido en los eventos más importantes de la historia de los Estados Unidos.	Robert Zemeckis	Tom Hanks, Robin Wright, Gary Sinise, Mykelti Williamson, Sally Field y Michael Conner Humphreys.	Paramount Pictures	Estados Unidos	8.2	https://www.youtube.com/embed/GIs2gpWpBiQ?si=xp6dWarpr1EJ1HF6	f
+155	Drive	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQFfl-TBaJqGZjYwvikB3-jTYzqrd9rpylYw&s	2011	Accion y suspenso	100	Un misterioso conductor especialista de cine y mecánico en un taller...	Nicolas Winding Refn	Ryan Gosling, Carey Mulligan, Bryan Cranston, Oscar Isaac, Albert Brooks, Christina Hendricks y Ron Perlman.	MWM Studios	EE.UU.	7.2	https://www.youtube.com/embed/KBiOF3y1W0Y?si=LEd8mSDPYLvrmGGJ	f
 22	Star Wars: Episode V - The Empire Strikes Back	https://i.ebayimg.com/images/g/GDEAAOSwo3pWgLdG/s-l1600.jpg	1980	Accion, Aventura, Space opera, Blockbuster y Ciencia ficción.	124	Son tiempos adversos para la rebelión. Aunque la Estrella de la Muerte ha sido destruida, las tropas imperiales han hecho salir a las fuerzas rebeldes de sus bases ocultas y los persiguen a través de la galaxia. Tras escapar de la terrible Flota Imperial, un grupo de guerreros de la libertad, encabezados por Luke Skywalker, ha establecido una nueva base secreta en el remonto mundo helado de Hoth.	George Lucas	Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing, Alec Guinness, Anthony Daniels, Kenny Baker, Peter Mayhew, David Prowse, Jack Purvis, Eddie Byrne y James Earl Jones.	Lucasfilm	Estados Unidos	8.1	https://www.youtube.com/embed/JNwNXF9Y6kY?si=_37GQj37ZufOJFWQ	f
 156	Inception	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJVFD5z6uvFLYTYJtRiYUNdusNarbqA8sVnw&s	2010	Accion y ciencia ficcion	148	Dom Cobb es un ladrón capaz de adentrarse en los sueños de la gente y hacerse con sus secretos. Sin embargo, ahora tiene que llevar a cabo una misión diferente a lo que ha hecho siempre: realizar una incepción para implantar una idea en el subconsciente de una persona. El plan se complica debido a la intervención de alguien que parece predecir cada uno de los movimientos de Cobb, alguien a quien solo él puede enfrentarse.	Christopher Nolan	Leonardo DiCaprio, Ken Watanabe, Joseph Gordon-Levitt, Marion Cotillard, Elliot Pagenota,​ Tom Hardy, Cillian Murphy, Tom Berenger y  Michael Caine.	Warner Bros. Pictures	Estados Unidos	8.0	https://www.youtube.com/embed/BZOMKZ0AwC8?si=-u4YgtqCRgwcPR1r	f
 63	Karate Kid 4: La Nueva Aventura	https://es.web.img3.acsta.net/r_1280_720/medias/nmedia/18/79/76/01/19516910.jpg	1994	Accion, Drama y Artes marciales.	108	Durante una conmemoración en honor a los soldados japoneses que lucharon durante la Segunda Guerra Mundial, el señor Miyagi conoce a Julie. La joven perdió a sus padres cuando solo era una niña y ahora, a sus 17 años, se convierte en el objetivo de Alpha Elite, un grupo de disciplina militar de su instituto al que deberá aprender a hacer frente. Por ello, Miyagi decide enseñarle unas lecciones de kárate.	Christopher Cain	Hilary Swank, Noriyuki Morita, Michael Ironside, Constance Towers y Chris Conrad	Columbia Pictures y Sony	Estados Unidos	3.5	https://www.youtube.com/embed/5LNE7jk2QWY?si=iQDUQgcy0pp0hlNp	f
@@ -136,13 +184,13 @@ COPY public.catalogo (id, nombre_de_pelicula, url_imagen, "año_de_estreno", gen
 123	Intensa mente 2	https://palomaynacho-1f321.kxcdn.com/wp-content/uploads/2023/11/Poster-pelicula-Intensamente-2-jpg.webp	2024	Comedia, animacion e infantil.	96	Intesamente 2, de Disney y Pixar, regresa a la mente de una Riley recién entrada en la adolescencia justo en el momento en que el Cuartel General está sufriendo una repentina reforma para hacerle hueco a algo totalmente inesperado: ¡Nuevas emociones! Alegría, Tristeza, Ira, Miedo y Asco, con años de impecable gestión a sus espaldas (según ellos...) no saben muy bien qué sentir cuando aparece Ansiedad.	Kelsey Mann	Amy Poehler, Phyllis Smith, Lewis Black, Tony Hale, Liza Lapira, Maya Hawke, Ayo Edebiri, Paul Walter Hauser y Adèle Exarchopoulos.	Walt Disney Pictures y Pixar Animation Studios	Estados Unidos	7.6	https://www.youtube.com/embed/9bol4Yyx9Gs?si=Pgsm4pOWA4C9-A1G	t
 9	Batman: El caballero de la noche	https://i.pinimg.com/originals/09/26/f5/0926f5f1b0f1eceb9c0d7a74cab63e8e.png	2008	Acción, Crimen, Drama y Suspenso.	152	Con la ayuda del teniente Jim Gordon y del Fiscal del Distrito Harvey Dent, Batman mantiene a raya el crimen organizado en Gotham. Todo cambia cuando aparece el Joker, un nuevo criminal que desencadena el caos y tiene aterrados a los ciudadanos.	Christopher Nolan	Christian Bale, Michael Caine, Heath Ledger, Gary Oldman, Aaron Eckhart, Maggie Gyllenhaal y Morgan Freeman.	Warner Bros. Pictures	Estados Unidos	8.1	https://www.youtube.com/embed/EXeTwQWrcwY?si=VBgDVIcWeABLG-fv	f
 5	Batman Returns 	https://m.media-amazon.com/images/M/MV5BOGZmYzVkMmItM2NiOS00MDI3LWI4ZWQtMTg0YWZkODRkMmViXkEyXkFqcGdeQXVyODY0NzcxNw@@._V1_.jpg	1992	Acción, Fantasía y Superhéroes.	126	Batman y la seductora Catwoman en la más oscura de sus aventuras, colaboran juntos para salvar la ciudad de Gotham, del Hombre Pingüino.	Tim Burton	Michael Keaton, Danny DeVito, Michelle Pfeiffer, Christopher Walken, Michael Gough, Pat Hingle, Michael Murphy y Vincent Schiavelli.	Warner Bros. Pictures	Estados Unidos	6.4	https://www.youtube.com/embed/YJ6tQBrsl-Y?si=5Jmns6wOtsiDTmxf	f
-7	Batman Forever	https://m.media-amazon.com/images/M/MV5BNDdjYmFiYWEtYzBhZS00YTZkLWFlODgtY2I5MDE0NzZmMDljXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg	1995	Superhéroes, Ciencia ficción, Acción y Aventura.	121	La ciudad de Gotham está amenazada por dos hombres: Dos caras y un psicópata que ha inventado un aparato que permite absorber las ondas cerebrales de los seres humanos. Ambos se unirán para lograr sus propósitos.	Joel Schumacher	Val Kilmer, Tommy Lee Jones, Jim Carrey, Nicole Kidman, Michael Gough, Pat Hingle y Drew Barrymore.	Warner Bros. Pictures	Estados Unidos	4.6	https://www.youtube.com/embed/TkSgCsYAWY8?si=IbQJjrUDZ1g18FpE	f
 8	The Lego Batman Movie	https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_.jpg	2017	Animación, Superhéroes y Comedia.	104	El irreverente Batman, que también tiene algo de artista frustrado, intentará salvar la ciudad una vez más. Se están produciendo cambios en Gotham, y Batman tiene que salvar la ciudad del Joker, un peligroso villano. Sin embargo, Batman no podrá hacerlo solo y deberá aprender a trabajar con sus demás aliados.	Chris McKay	Will Arnett, Zach Galifianakis, Michael Cera, Rosario Dawson y Ralph Fiennes.	Warner Bros. Pictures	Estados Unidos	6.4	https://www.youtube.com/embed/JHxhTOxX_bs?si=Tmiq_g-fC2ACRk06	f
 1	Batman: Begins	https://es.web.img2.acsta.net/pictures/14/03/05/11/10/247578.jpg	2005	Accion, Crimen, Suspenso y Superheroes.	140	Bruce Wayne vive obsesionado con el recuerdo de la muerte de sus padres. Atormentado, se va de Gotham y encuentra a un extraño personaje que lo entrena en todas las disciplinas físicas y mentales que le servirán para combatir el Mal..	Christopher Nolan	Christian Bale, Michael Caine, Liam Neeson, Katie Holmes, Gary Oldman, Cillian Murphy, Tom Wilkinson,  Rutger Hauer, Ken Watanabe, Mark Boone Junior, Linus Roache, Morgan Freeman.	Warner Bros. Pictures	Estados Unidos	7.4	https://www.youtube.com/embed/BUt97Dv0y9E?si=WSAVtcL4G3hIrjrm" title="YouTube video player	f
 15	Top gun	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuvQjD4NLvQppSAdjm2nASuGwHLAfxKYj75Q&s	1986	Acción y Drama.	110	El joven piloto Maverick Mitchell acude a una prestigiosa escuela aérea, famosa por formar a los mejores pilotos de combate del país. Maverick se siente atraído por su hermosa instructora, mientras desarrolla una intensa rivalidad con otro piloto.	Tony Scott	Tom Cruise, Kelly McGillis, Val Kilmer, Anthony Edwards y Tom Skerritt.	Paramount Pictures	Estados Unidos	6.0	https://www.youtube.com/embed/xa_z57UatDY?si=d5qr5EsJbr6xbYDS	f
 131	Furiosa: De la saga Mad Max	https://trelew.cinemaconcept.com.ar/imagenes/peliculas/201/1716471490-1545.jpeg	2024	Acción, cine postapocalíptico y aventuras.	148	Mientras el mundo cae, la joven Furiosa es arrebatada del Paraje Verde de las Muchas Madres y cae en manos de una gran Horda de Motociclistas liderada por el Señor de la Guerra Dementus. Recorriendo el páramo se encuentran con la Ciudadela presidida por Immortan Joe. Mientras los dos tiranos luchan por el dominio, Furiosa debe sobrevivir a muchas pruebas mientras reúne los medios para encontrar el camino a casa.	George Miller	Anya Taylor-Joy, Chris Hemsworth, Tom Burke y Alyla Browne.	Warner Bros. Pictures	Estados Unidos y Austria	7.1	https://www.youtube.com/embed/hza_trxHayA?si=hsLFChdWbCnHZBKa	t
 17	El secreto de sus ojos	https://i.pinimg.com/736x/fd/31/aa/fd31aa584da8180f326f06685a1ebd05.jpg	2009	Suspenso y Drama.	127	Benjamín Espósito es un oficial de un Juzgado de Instrucción de Buenos Aires que acaba de jubilarse. Su sueño es escribir una novela y, para ello, intentará dar solución a un caso abierto desde hace varias décadas, del cual fue testigo y protagonista. Reviviendo el caso, vuelve también a su memoria el recuerdo de una mujer, a quien ha amado en silencio durante todos esos años.	Juan José Campanella	Ricardo Darín, Soledad Villamil, Pablo Rago, Javier Godino y Guillermo Francella.	Haddock Films	Argentina	8.1	https://www.youtube.com/embed/hKa8U-8vsfU?si=cKPq0YtnlilBq0Be	f
 6	Batman y Robin 	https://www.originalfilmart.com/cdn/shop/products/BatmanandRobin_1997_original_film_art_81750653-545c-4085-ae7c-20c0513176c1_5000x.jpg?v=1610853663	1997	Superhéroes, Ciencia ficción, Acción, Aventura y Comedia.	125	Batman y su compañero Robin deben enfrentarse a un nuevo villano, el Sr. Frío, que intentará congelar a todos los habitantes de Gotham.	Joel Schumacher	George Clooney, Arnold Schwarzenegger, Uma Thurman, Alicia Silverstone, Robert Swenson, Michael Gough, Pat Hingle, John Glover y Elle Macpherson.	Warner Bros. Pictures	Estados Unidos	3.6	https://www.youtube.com/embed/JEo0ICIKk9c?si=5yC7XSRCW8j8nbcz	f
+7	Batman Forever	https://m.media-amazon.com/images/M/MV5BNDdjYmFiYWEtYzBhZS00YTZkLWFlODgtY2I5MDE0NzZmMDljXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg	1995	Superheroes	121	La ciudad de Gotham está amenazada por dos hombres: Dos caras y un psicópata que ha inventado un aparato que permite absorber las ondas cerebrales de los seres humanos. Ambos se unirán para lograr sus propósitos.	Joel Schumacher	Val Kilmer, Tommy Lee Jones, Jim Carrey, Nicole Kidman, Michael Gough, Pat Hingle y Drew Barrymore.	Warner Bros. Pictures	Estados Unidos	4.6	https://www.youtube.com/embed/TkSgCsYAWY8?si=IbQJjrUDZ1g18FpE	f
 16	Top Gun: Maverick	https://es.web.img2.acsta.net/pictures/22/03/29/15/57/1533124.jpg	2022	Acción y Drama.	131	Maverick, quien lleva 30 años de servicio, es ahora instructor de pilotos militares. Una última misión, un sacrificio final, obliga a este maestro de los cielos a enfrentar las heridas abiertas del pasado y sus temores más profundos.	Joseph Kosinski	Tom Cruise, Val Kilmer, Miles Teller, Jennifer Connelly, Glen Powell, Lyliana Wray, Ed Harris, Monica Barbaro, Jon Hamm y Charles Parnell.	Paramount Pictures	Estados Unidos	7.0	https://www.youtube.com/embed/qSqVVswa420?si=PrTx5G9VFH4Kz3p3	f
 112	El robo del siglo	https://es.web.img3.acsta.net/pictures/20/03/05/10/49/3147329.jpg	2020	Suspenso, crímenes y comedia.	114	Viernes, 13 de enero de 2006. Los policías aguardan la voz de su jefe. Miguel Sileo, el negociador, espera hablar con Vitette, uno de los líderes de la banda de ladrones que entró a la sucursal del Banco Río de Acassuso.	Ariel Winograd	Diego Peretti, Guillermo Francella, Pablo Rago, Luis Luque, Rafael Ferro y Mariano Argento.	AZ Films	Argentina	6.7	https://www.youtube.com/embed/8m6aAhgi7Xg?si=6jmdZU2KRz90neib	f
 18	Star Wars: Episode I - The Phantom Menace	https://muvix.cl/CDN/media/entity/get/FilmPosterGraphic/A000000559?referenceScheme=Global&allowPlaceHolder=true	1999	Space opera, Blockbuster y Ciencia ficción.	136	Obi-Wan Kenobi es un joven aprendiz caballero Jedi bajo la tutela de Qui-Gon Jinn; Anakin Skywalker, quien después será padre de Luke Skywalker y se convertirá en Darth Vader, solamente es un niño de 9 años. Cuando la Federación de Comercio corta todas las rutas al planeta Naboo, Qui-Gon y Obi-Wan son asignados para solucionar el problema.	George Lucas	Liam Neeson, Ewan McGregor, Natalie Portman, Jake Lloyd, Pernilla August, Ray Park, Ahmed Best, Anthony Daniels, Kenny Baker,Hugh Quarshie, Ian McDiarmid, Silas Carson, Samuel L. Jackson y Frank Oz.	Lucasfilm	Estados Unidos	6.2	https://www.youtube.com/embed/n1CUHjrc9Sc?si=kxVTbY06BrU7Hkk1	f
@@ -223,10 +271,29 @@ COPY public.catalogo (id, nombre_de_pelicula, url_imagen, "año_de_estreno", gen
 
 
 --
+-- Data for Name: opiniones; Type: TABLE DATA; Schema: public; Owner: joacoeze
+--
+
+COPY public.opiniones (id, id_pelicula, opinion, puntaje, fecha_opinion) FROM stdin;
+7	1	No me gusto la pelicula.	4.5	2024-07-04 20:51:42.704936
+8	120	No me gusto la pelicula.	4.5	2024-07-05 13:32:45.991265
+9	120	Me emociono la pelicula.	9.5	2024-07-05 14:22:51.3622
+10	120	Una de las peliculas mas aburridas que vi en mi vida.	2.5	2024-07-05 16:29:20.94319
+\.
+
+
+--
 -- Name: catalogo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: joacoeze
 --
 
-SELECT pg_catalog.setval('public.catalogo_id_seq', 156, true);
+SELECT pg_catalog.setval('public.catalogo_id_seq', 159, true);
+
+
+--
+-- Name: opiniones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: joacoeze
+--
+
+SELECT pg_catalog.setval('public.opiniones_id_seq', 10, true);
 
 
 --
@@ -235,6 +302,22 @@ SELECT pg_catalog.setval('public.catalogo_id_seq', 156, true);
 
 ALTER TABLE ONLY public.catalogo
     ADD CONSTRAINT catalogo_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: opiniones opiniones_pkey; Type: CONSTRAINT; Schema: public; Owner: joacoeze
+--
+
+ALTER TABLE ONLY public.opiniones
+    ADD CONSTRAINT opiniones_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: opiniones opiniones_id_pelicula_fkey; Type: FK CONSTRAINT; Schema: public; Owner: joacoeze
+--
+
+ALTER TABLE ONLY public.opiniones
+    ADD CONSTRAINT opiniones_id_pelicula_fkey FOREIGN KEY (id_pelicula) REFERENCES public.catalogo(id);
 
 
 --
