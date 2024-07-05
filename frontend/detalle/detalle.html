@@ -1,179 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle | CAC-MOVIES</title>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../statics/detalles.css">
-    <script src="https://kit.fontawesome.com/f7fb471b65.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-</head>
-<body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="../index.html">
-                    <i class="fas fa-film" aria-hidden="true"></i>
-                    CAC-Movies
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse justify-content-end aos-animate" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link link-grande seccion" href="../index.html">Tendencias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-grande seccion" href="../registrarse/registro.html">Registrarse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-grande seccion" href="../iniciar sesion/iniciar_sesión.html">Iniciar Sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-grande iniciar" href="../api.html">Nuestro Catálogo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="editarPeliculaLink" class="nav-link link-grande iniciar" href="#">Editar Película</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Detalle | Cuevana 8</title>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="../statics/img/logo2.png" type="image/x-icon">
+        <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../statics/detalles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://kit.fontawesome.com/f7fb471b65.js" crossorigin="anonymous"></script>
+    </head>
+    
+    <body>
+        <header class="header">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+                <div class="container">
+                    <a class="navbar-brand" href="../index.html">
+                        <i class="fas fa-film" aria-hidden="true"></i>
+                        Cuevana 8
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse justify-content-end aos-animate" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link link-grande seccion" href="../index.html#tendencias">Tendencias</a>  
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-grande seccion" href="../registrarse/registro.html">Registrarse</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-grande seccion" href="../iniciar sesion/iniciar_sesión.html">Iniciar Sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-grande iniciar" href="../api.html">Nuestro Catálogo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="editarPeliculaLink" class="nav-link link-grande iniciar" href="#">Editar Película</a>
 
-                        </li>
-                    </ul>
-                </div>  
+                            </li>
+                        </ul>
+                    </div>  
+                </div>
+            </nav>
+        </header>
+
+        <main id="mainDetalle" class="mainDetalle"></main>    
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="titulo-seccion">Opiniones</h2>
+                </div>
             </div>
-        </nav>
-    </header>
-
-    <main id="mainDetalle" class="mainDetalle"></main>
-
-    <footer class="footer">
-        <nav>
-            <ul>
-                <li><a href="../index.html">Términos y condiciones</a></li>
-                <li><a href="../index.html">Preguntas frecuentes</a></li>
-                <li><a href="../index.html">Ayuda</a></li>
-                <li><a href="../index.html"><span class="admin-link">Volver al menú</span></a></li>
-            </ul>
-        </nav>
-    </footer>
-
-    <!-- Modal para editar película -->
-    <div class="modal fade" id="modalEditarPelicula" tabindex="-1" aria-labelledby="modalEditarPeliculaLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditarPeliculaLabel">Editar Película</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="row" id="opiniones">
+                <!-- Aquí irán las opiniones -->
+                <div class="col-md-4 opinion">
+                    <div class="opinion-card">
+                        <p class="opinion-texto">Esta película es increíble. Me encantó la trama y los personajes.</p>
+                        <p class="opinion-puntaje">Puntaje: 9.5/10</p>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form id="form-editar-pelicula">
-                        <div class="mb-3">
-                            <label for="nombre">Nombre de la película:</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre de la película" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="url_imagen">URL de la imagen:</label>
-                            <input type="text" class="form-control" id="url_imagen" placeholder="URL de la imagen" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="año_de_estreno">Año de estreno:</label>
-                            <input type="number" class="form-control" id="año_de_estreno" placeholder="Año de estreno" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="genero">Género:</label>
-                            <select class="form-control" id="genero" required>
-                                <option value="" disabled selected>Selecciona un género</option>
-                                <option value="Accion y Artes marciales">Accion y Artes marciales</option>
-                                <option value="Animación">Animación</option>
-                                <option value="Cine bélico, cine biográfico">Cine bélico y cine biográfico</option>
-                                <option value="CienciaFiccion">Ciencia Ficcion</option>
-                                <option value="Crimen">Crimen</option>
-                                <option value="Documental">Documental</option>
-                                <option value="Drama">Drama</option>
-                                <option value="Fantasía y Aventura">Fantasía y Aventura</option>
-                                <option value="Historico">Historico</option>
-                                <option value="Humor negro">Humor negro</option>
-                                <option value="Infantil">Infantil</option>
-                                <option value="Romantica">Romantica</option>
-                                <option value="Suspenso">Suspenso</option>
-                                <option value="Superheroes">Superheroes</option>
-                                <option value="Terror">Terror</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="duracion">Duración (minutos):</label>
-                            <input type="number" class="form-control" id="duracion" placeholder="Duración (minutos)" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="sinopsis">Sinopsis:</label>
-                            <textarea class="form-control" id="sinopsis" rows="3" placeholder="Sinopsis" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="director">Director:</label>
-                            <input type="text" class="form-control" id="director" placeholder="Director" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="actores_principales">Actores principales:</label>
-                            <input type="text" class="form-control" id="actores_principales" placeholder="Actores principales" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productora">Productora:</label>
-                            <input type="text" class="form-control" id="productora" placeholder="Productora" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pais_de_origen">País de origen:</label>
-                            <input type="text" class="form-control" id="pais_de_origen" placeholder="País de origen" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="puntaje_segun_critica">Puntaje según crítica:</label>
-                            <input type="number" class="form-control" id="puntaje_segun_critica" step="0.1" min="0" max="10" placeholder="Puntaje según crítica" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="url_trailer">URL del tráiler:</label>
-                            <input type="text" class="form-control" id="url_trailer" placeholder="URL del tráiler" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="es_tendencia">
-                            <label class="form-check-label" for="es_tendencia">Es tendencia</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" form="form-editar-pelicula">Guardar cambios</button>
+                <!-- Añade más opiniones aquí -->
+            </div>
+        </div>
+
+        <footer class="footer">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Términos y condiciones</a></li>
+                    <li><a href="../index.html">Preguntas frecuentes</a></li>
+                    <li><a href="../index.html">Ayuda</a></li>
+                    <li><a href="../index.html"><span class="admin-link">Volver al menú</span></a></li>
+                </ul>
+            </nav>
+        </footer>
+
+        <!-- Modal para editar película -->
+        <div class="modal fade" id="modalEditarPelicula" tabindex="-1" aria-labelledby="modalEditarPeliculaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditarPeliculaLabel">Editar Película</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-editar-pelicula">
+                            <div class="mb-3">
+                                <label for="nombre">Nombre de la película:</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre de la película" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="url_imagen">URL de la imagen:</label>
+                                <input type="text" class="form-control" id="url_imagen" placeholder="URL de la imagen" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="año_de_estreno">Año de estreno:</label>
+                                <input type="number" class="form-control" id="año_de_estreno" placeholder="Año de estreno" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="genero">Género:</label>
+                                <select class="form-control" id="genero" required>
+                                    <option value="" disabled selected>Selecciona un género</option>
+                                    <option value="Accion y Artes marciales">Accion y Artes marciales</option>
+                                    <option value="Animación">Animación</option>
+                                    <option value="Cine bélico, cine biográfico">Cine bélico y cine biográfico</option>
+                                    <option value="CienciaFiccion">Ciencia Ficcion</option>
+                                    <option value="Crimen">Crimen</option>
+                                    <option value="Documental">Documental</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Fantasía y Aventura">Fantasía y Aventura</option>
+                                    <option value="Historico">Historico</option>
+                                    <option value="Humor negro">Humor negro</option>
+                                    <option value="Infantil">Infantil</option>
+                                    <option value="Romantica">Romantica</option>
+                                    <option value="Suspenso">Suspenso</option>
+                                    <option value="Superheroes">Superheroes</option>
+                                    <option value="Terror">Terror</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="duracion">Duración (minutos):</label>
+                                <input type="number" class="form-control" id="duracion" placeholder="Duración (minutos)" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sinopsis">Sinopsis:</label>
+                                <textarea class="form-control" id="sinopsis" rows="3" placeholder="Sinopsis" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="director">Director:</label>
+                                <input type="text" class="form-control" id="director" placeholder="Director" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="actores_principales">Actores principales:</label>
+                                <input type="text" class="form-control" id="actores_principales" placeholder="Actores principales" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productora">Productora:</label>
+                                <input type="text" class="form-control" id="productora" placeholder="Productora" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="pais_de_origen">País de origen:</label>
+                                <input type="text" class="form-control" id="pais_de_origen" placeholder="País de origen" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="puntaje_segun_critica">Puntaje según crítica:</label>
+                                <input type="number" class="form-control" id="puntaje_segun_critica" step="0.1" min="0" max="10" placeholder="Puntaje según crítica" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="url_trailer">URL del tráiler:</label>
+                                <input type="text" class="form-control" id="url_trailer" placeholder="URL del tráiler" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="es_tendencia">
+                                <label class="form-check-label" for="es_tendencia">Es tendencia</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" form="form-editar-pelicula">Guardar cambios</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../statics/js/detalle.js"></script>
-    <script>
-        AOS.init();
-        document.addEventListener("DOMContentLoaded", function() {
-            const editarPeliculaLink = document.getElementById('editarPeliculaLink');
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../statics/js/detalle.js"></script>
+        <script>
+            AOS.init();
+            document.addEventListener("DOMContentLoaded", function() {
+                const editarPeliculaLink = document.getElementById('editarPeliculaLink');
 
-            editarPeliculaLink.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevenir la acción por defecto del enlace
+                editarPeliculaLink.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevenir la acción por defecto del enlace
 
-                // Activar el modal usando Bootstrap 5
-                var modal = new bootstrap.Modal(document.getElementById('modalEditarPelicula'));
-                modal.show();
+                    // Activar el modal usando Bootstrap 5
+                    var modal = new bootstrap.Modal(document.getElementById('modalEditarPelicula'));
+                    modal.show();
+                });
+
+                // Manejar evento cuando el modal se cierra
+                var modalEditarPelicula = document.getElementById('modalEditarPelicula');
+                modalEditarPelicula.addEventListener('hidden.bs.modal', function () {
+                    window.location.reload(); // Recargar la página cuando se cierra el modal
+                });
             });
 
-            // Manejar evento cuando el modal se cierra
-            var modalEditarPelicula = document.getElementById('modalEditarPelicula');
-            modalEditarPelicula.addEventListener('hidden.bs.modal', function () {
-                window.location.reload(); // Recargar la página cuando se cierra el modal
-            });
-        });
-
-    </script>
-    
-</body>
+        </script>
+        
+    </body>
 </html>
