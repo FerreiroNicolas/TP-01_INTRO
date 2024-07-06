@@ -141,7 +141,7 @@ def agregar_pelicula():
         return jsonify({'message': 'Internal server error'}), 500
 
 
-@app.route("/detalle/detalle.html<int:id>", methods=['GET'])
+@app.route("/detalle/detalle.html/<int:id>", methods=['GET'])
 def obtener_pelicula(id):
     try:
         pelicula = catalogo.query.get(id)
@@ -245,7 +245,7 @@ def publicar_opinion(id):
         print('Error', error)
         return jsonify({'message': 'Internal server error'}), 500
     
-# @app.route("/detalle/detalle.html<int:id>", methods=['PUT'])
+# @app.route("/detalle/detalle.html/<int:id>", methods=['PUT'])
 # def modificar_opinion(id):
 #     try:
 #         data = request.json
@@ -283,8 +283,6 @@ def borrar_opinion(id):
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': 'Error interno del servidor'}), 500
-
-    
 
 if __name__ == '__main__':
     db.init_app(app)

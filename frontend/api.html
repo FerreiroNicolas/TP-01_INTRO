@@ -1,58 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CAC-Movies</title>
-        <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="statics/style.css">
-    </head>
-    
-    <body>
-        <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <i class="fas fa-film" aria-hidden="true"></i>
-                        CAC-Movies
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse justify-content-end aos-animate" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link link-grande seccion" href="index.html#tendencias">Tendencias</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link link-grande seccion" href="/registrarse/registro.html">Registrarse</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link link-grande seccion" href="/iniciar sesion/iniciar_sesión.html">Iniciar Sesión</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link link-grande iniciar" href="api.html">Nuestro Catalogo</a>
-                            </li>
-                        </ul>
-                    </div>  
-                </div>
-            </nav>
-        </header>
-        <div class="container mt-5" id="resultados">
-            <div class="row" id="api-movies"></div>
-        </div>
-
-        <script src="statics/js/api.js"></script>
-        <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-    <footer class="footer">
-        <nav>
-            <ul>
-                <li><a href="index.html">Términos y condiciones</a></li>
-                <li><a href="index.html">Preguntas frecuentes</a></li>
-                <li><a href="index.html">Ayuda</a></li>
-                <li><a href="index.html"><span class="admin-link">Administrador Peliculas</span></a></li>
-            </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuevana 8</title>
+    <link rel="shortcut icon" href="../statics/img/logo2.png" type="image/x-icon">
+    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="statics/agregar_peliculas.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-film" aria-hidden="true"></i>
+                    Cuevana 8
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse justify-content-end aos-animate" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link link-grande seccion" href="index.html#tendencias">Tendencias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-grande seccion" href="/registrarse/registro.html">Registrarse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-grande seccion" href="/iniciar sesion/iniciar_sesión.html">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-grande iniciar" href="#" data-bs-toggle="modal" data-bs-target="#modalAgregarPelicula">Agregar Película</a>
+                        </li>
+                    </ul>
+                </div>  
+            </div>
         </nav>
-    </footer>
+    </header>
+
+    <!-- Modal para agregar película -->
+    <div class="modal fade" id="modalAgregarPelicula" tabindex="-1" aria-labelledby="modalAgregarPeliculaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAgregarPeliculaLabel">Agregar Nueva Película</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-agregar-pelicula">
+                        <div class="mb-3">
+                            <label for="nombre">Nombre de la película:</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre de la película" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="url_imagen">URL de la imagen:</label>
+                            <input type="text" class="form-control" id="url_imagen" placeholder="URL de la imagen" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="año_de_estreno">Año de estreno:</label>
+                            <input type="number" class="form-control" id="año_de_estreno" placeholder="Año de estreno" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="genero">Género:</label>
+                            <select class="form-control" id="genero" required>
+                                <option value="" disabled selected>Selecciona un género</option>
+                                <option value="Accion y Artes marciales">Accion y Artes marciales</option>
+                                <option value="Animación">Animación</option>
+                                <option value="Cine bélico, cine biográfico">Cine bélico y cine biográfico</option>
+                                <option value="CienciaFiccion">Ciencia Ficcion</option>
+                                <option value="Crimen">Crimen</option>
+                                <option value="Documental">Documental</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Fantasía y Aventura">Fantasía y Aventura</option>
+                                <option value="Historico">Historico</option>
+                                <option value="Humor negro">Humor negro</option>
+                                <option value="Infantil">Infantil</option>
+                                <option value="Romantica">Romantica</option>
+                                <option value="Suspenso">Suspenso</option>
+                                <option value="Superheroes">Superheroes</option>
+                                <option value="Terror">Terror</option>
+
+                                <!-- Añadir más opciones aquí -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="duracion">Duración (minutos):</label>
+                            <input type="number" class="form-control" id="duracion" placeholder="Duración (minutos)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sinopsis">Sinopsis:</label>
+                            <textarea class="form-control" id="sinopsis" rows="3" placeholder="Sinopsis" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="director">Director:</label>
+                            <input type="text" class="form-control" id="director" placeholder="Director" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="actores_principales">Actores principales:</label>
+                            <input type="text" class="form-control" id="actores_principales" placeholder="Actores principales" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productora">Productora:</label>
+                            <input type="text" class="form-control" id="productora" placeholder="Productora" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pais_de_origen">País de origen:</label>
+                            <input type="text" class="form-control" id="pais_de_origen" placeholder="País de origen" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="puntaje_segun_critica">Puntaje según crítica:</label>
+                            <input type="number" class="form-control" id="puntaje_segun_critica" step="0.1" min="0" max="10" placeholder="Puntaje según crítica" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="url_trailer">URL del tráiler:</label>
+                            <input type="text" class="form-control" id="url_trailer" placeholder="URL del tráiler" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="es_tendencia">
+                            <label class="form-check-label" for="es_tendencia">Es tendencia</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar Película</button>
+                    </form>
+                    <div id="mensaje-exito" class="alert alert-success d-none" role="alert">
+                        La película se agregó correctamente.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5" id="resultados">
+        <div class="row" id="api-movies"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="statics/js/api.js"></script>
+</body>
+<footer class="footer">
+    <nav>
+        <ul>
+            <li><a href="index.html">Términos y condiciones</a></li>
+            <li><a href="index.html">Preguntas frecuentes</a></li>
+            <li><a href="index.html">Ayuda</a></li>
+            <li><a href="index.html"><span class="admin-link">Administrador Peliculas</span></a></li>
+        </ul>
+    </nav>
+</footer>
 </html>
