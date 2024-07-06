@@ -48,25 +48,33 @@
             </nav>
         </header>
 
-        <main id="mainDetalle" class="mainDetalle"></main>    
-        
-        <div class="container">
-            <div class="row">
+        <main class="mainDetalle">
+            <section id="mainDetalle">
+                <!-- Contenido principal -->
+            </section>
+            <div class="row container">
                 <div class="col-12">
                     <h2 class="titulo-seccion">Opiniones</h2>
+                    <form id="formAgregarOpinion" class="mb-4">
+                        <div class="mb-3">
+                            <label for="opinion" class="form-label">Opinión:</label>
+                            <textarea class="form-control" id="opinion" rows="3" placeholder="Escribe tu opinión aquí" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="puntaje" class="form-label">Puntaje (0-10):</label>
+                            <input type="number" class="form-control" id="puntaje" step="0.1" min="0" max="10" placeholder="Puntaje" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary boton_opinion">Agregar Opinión</button>
+                    </form>
                 </div>
             </div>
-            <div class="row" id="opiniones">
-                <!-- Aquí irán las opiniones -->
-                <div class="col-md-4 opinion">
-                    <div class="opinion-card">
-                        <p class="opinion-texto">Esta película es increíble. Me encantó la trama y los personajes.</p>
-                        <p class="opinion-puntaje">Puntaje: 9.5/10</p>
-                    </div>
-                </div>
-                <!-- Añade más opiniones aquí -->
+            <div class="row container" id="opiniones">
+                <!-- Aquí irán las opiniones renderizadas dinámicamente -->
             </div>
-        </div>
+        </main>
+        
+
+
 
         <footer class="footer">
             <nav>

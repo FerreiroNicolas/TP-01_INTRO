@@ -27,7 +27,7 @@ const puntaje_segun_critica = document.getElementById('puntaje_segun_critica');
 const url_trailer = document.getElementById('url_trailer');
 const es_tendencia = document.getElementById('es_tendencia');
 
-fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
+fetch(`http://localhost:5000/detalle/detalle.html${id}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -107,7 +107,7 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
         puntaje_segun_critica.value = movie.puntaje_segun_critica;
         url_trailer.value = movie.url_trailer;
         es_tendencia.checked = movie.es_tendencia;
-
+        renderizarOpiniones(data.opiniones);
         // Mostrar el modal de editar película solo cuando se hace clic en el enlace
         const editarPeliculaLink = document.getElementById('editarPeliculaLink');
         editarPeliculaLink.addEventListener('click', function(event) {
@@ -128,6 +128,27 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
             confirmButtonText: 'Aceptar'
         });
     });
+
+function renderizarOpiniones(opiniones) {
+    const opin = document.getElementById('opiniones');
+    let output = '';
+    if (opiniones && opiniones.length > 0) {
+        opiniones.forEach(opinion => {
+            output += `
+                <div class="opinion">
+                    <p><strong>Opinión:</strong> ${opinion.opinion}</p>
+                    <p class="opinion-puntaje"><strong>Puntaje:</strong> ${opinion.puntaje} /10</p>
+                    <button class="btn btn-danger btn-sm eliminar-opinion" data-id="${opinion.id}">Eliminar</button>
+                </div>
+            `;
+        });
+    } else {
+        output = '<p>No hay opiniones disponibles.</p>';
+    }
+    opin.innerHTML = output;
+}
+
+
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {
@@ -185,3 +206,67 @@ formEditarPelicula.addEventListener('submit', function(event) {
     });
 });
 
+const formAgregarOpinion = document.getElementById('formAgregarOpinion');
+
+formAgregarOpinion.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevenir el envío del formulario por defecto
+
+    // Obtener los valores del formulario
+    const opinion = document.getElementById('opinion').value;
+    const puntaje = document.getElementById('puntaje').value;
+
+    // Datos a enviar al servidor
+    const data = {
+        opinion: opinion,
+        puntaje: parseFloat(puntaje) // Convertir a número decimal
+    };
+
+    // Realizar la solicitud POST al servidor
+    fetch(`http://localhost:5000/detalle/detalle.html/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Limpiar el formulario después de enviar la opinión
+        formAgregarOpinion.reset();
+
+        // Verificar si hay opiniones en la respuesta del servidor
+        if (data.opiniones && data.opiniones.length > 0) {
+            // Renderizar las opiniones actualizadas
+            renderizarOpiniones(data.opiniones);
+        } else {
+            // Mostrar un mensaje de que no hay opiniones disponibles
+            const opin = document.getElementById('opiniones');
+            opin.innerHTML = '<div class="contenedorOpiniones"><p>No hay opiniones disponibles.</p></div>';
+        }
+
+        // Opcional: mostrar mensaje de éxito
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: 'Opinión agregada exitosamente',
+            confirmButtonText: 'Aceptar'
+        }).then(() => {
+            // Recargar la página después de mostrar el mensaje
+            location.reload();
+        });
+    })
+    .catch(error => {
+        console.error('Error al agregar opinión:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error al agregar opinión',
+            confirmButtonText: 'Aceptar'
+        });
+    });
+});

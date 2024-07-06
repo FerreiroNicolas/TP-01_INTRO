@@ -390,6 +390,7 @@ nav ul li a {
 .row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Centrar las tarjetas de opiniones */
 }
 
 .col-md-4 {
@@ -418,6 +419,87 @@ nav ul li a {
     font-size: 14px;
     color: #9F3647; /* Puntaje en color destacado */
 }
+
+/* Estilos para el botón de agregar opinión */
+.boton_opinion {
+    background-color: #9F3647; /* Color de fondo */
+    color: white; /* Color de texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Padding interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor tipo puntero */
+    transition: background-color 0.3s ease; /* Transición suave */
+    font-weight: bold;
+}
+
+.boton_opinion:hover {
+    background-color: #212529; 
+    color: #e65570; 
+    font-weight: bold;
+}
+
+.boton_opinion:focus {
+    outline: none; 
+}
+
+/* Estilos para la sección de opiniones */
+#opiniones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.opinion {
+    width: calc(30% - 20px); /* Ancho calculado con espacio para el margen */
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #282828;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #ffffff; /* Texto blanco */
+}
+
+.opinion p {
+    margin: 0;
+}
+
+.opinion strong {
+    font-weight: bold;
+}
+
+.opinion-puntaje {
+    color: #9F3647; /* Color de puntaje */
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+/* Estilos para el botón de eliminar opinión */
+.eliminar-opinion {
+    margin-top: 5px;
+    background-color: transparent; /* Color de fondo transparente */
+    color: #dc3545; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 3px 8px; /* Padding interno más pequeño */
+    border-radius: 3px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor tipo puntero */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+
+    /* Estilos adicionales opcionales */
+    margin-left: 10px; /* Margen izquierdo */
+}
+
+.eliminar-opinion:hover {
+    background-color: rgba(220, 53, 69, 0.1); /* Color de fondo con transparencia al pasar el mouse */
+    color: #c82333; /* Cambio de color del texto al pasar el mouse */
+}
+
+.eliminar-opinion:focus {
+    outline: none; /* Eliminar el contorno al hacer foco */
+}
+
+
+
+
 
 @media (max-width: 768px) {
     .contenedorTrailer {
