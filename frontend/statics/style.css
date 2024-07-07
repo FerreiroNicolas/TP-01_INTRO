@@ -304,7 +304,10 @@ h6.indice .punto {
 }
 
 .botonBuscador:hover {
-    background-color: #ff6666;
+    background-color: rgb(226, 207, 207);
+    color: #9F3647;
+    border: 1px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .pelicula {
