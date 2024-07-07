@@ -64,10 +64,19 @@ body::-webkit-scrollbar-track {
 }
 
 .iniciar {
-    background-color: black;
-    padding: 6px 10px; 
-    border-radius: 5px;
+    background-color: #000000;
+    color: white;
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.iniciar:hover {
+    color: white;
+    background-color: #9F3647;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .fixed-top {
@@ -401,9 +410,10 @@ nav ul li a {
 }
 
 .boton_opinion:hover {
-    background-color: #212529; 
-    color: #e65570; 
-    font-weight: bold;
+    background-color: rgb(226, 207, 207);
+    color: #9F3647;
+    border: 1px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .boton_opinion:focus {
