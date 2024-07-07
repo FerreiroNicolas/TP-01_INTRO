@@ -133,22 +133,83 @@ function renderizarOpiniones(opiniones) {
     const opin = document.getElementById('opiniones');
     let output = '';
     if (opiniones && opiniones.length > 0) {
+        output += `
+            <div class="contenedorOpiniones">
+                <h2 class="titulo-seccion">¿Qué piensan los espectadores?</h2>
+        `;
         opiniones.forEach(opinion => {
             output += `
-                <div class="opinion">
-                    <p><strong>Opinión:</strong> ${opinion.opinion}</p>
-                    <p class="opinion-puntaje"><strong>Puntaje:</strong> ${opinion.puntaje} /10</p>
-                    <button class="btn btn-danger btn-sm eliminar-opinion" data-id="${opinion.id}">Eliminar</button>
+                <div class="col-md-12">
+                    <div class="opinion-card">
+                        <p class="opinion-texto"><strong>Opinión:</strong> ${opinion.opinion}</p>
+                        <p class="opinion-puntaje"><strong>Puntaje:</strong> ${opinion.puntaje} /10</p>
+                        <button class="eliminar-opinion" data-id="${opinion.id_opinion}">Eliminar</button>
+                    </div>
                 </div>
             `;
         });
+        output += `</div>`;
     } else {
-        output = '<p>No hay opiniones disponibles.</p>';
+        output = '<div class="contenedorOpiniones"><p>No hay opiniones disponibles, sé el primero en opinar sobre esta película.</p></div>';
     }
     opin.innerHTML = output;
+    agregarEventosEliminar();
 }
 
 
+
+function agregarEventosEliminar() {
+    const botonesEliminar = document.querySelectorAll('.eliminar-opinion');
+    botonesEliminar.forEach(boton => {
+        boton.addEventListener('click', function() {
+            const idOpinion = this.getAttribute('data-id');
+            eliminarOpinion(idOpinion);
+        });
+    });
+}
+
+function eliminarOpinion(idOpinion) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminará la opinión. ¿Quieres continuar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`http://localhost:5000/detalle/detalle.html/${idOpinion}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Opinión eliminada correctamente',
+                    confirmButtonText: 'Aceptar'
+                }).then(() => {
+                    location.reload();
+                });
+            })
+            .catch(error => {
+                console.error('Error al eliminar opinión:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error al eliminar opinión',
+                    confirmButtonText: 'Aceptar'
+                });
+            });
+        }
+    });
+}
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {

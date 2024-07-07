@@ -6,7 +6,6 @@
     color: white;
 }
 
-/* Estilos para el cuerpo del documento */
 body {
     font-family: 'Nunito', sans-serif;
     background-color: #181419;
@@ -27,57 +26,13 @@ body::-webkit-scrollbar-track {
     background-color: #181419; 
 }
 
-/* Contenedor principal */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Estilos para la sección de opiniones */
-.titulo-seccion {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    background-color: #007bff;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.col-md-4 {
-    flex: 1 1 30%;
-    max-width: 30%;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.opinion-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.opinion-texto {
-    font-size: 16px;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.opinion-puntaje {
-    font-size: 14px;
-    color: #666;
-}
-
-/* Otros estilos existentes */
 .header {
     background-color: #9F3647;
     color: white;
@@ -269,7 +224,6 @@ nav ul li a {
     padding: 20px;
 }
 
-/* Estilo para el modal */
 .modal-content {
     border-radius: 10px;
     overflow: hidden;
@@ -375,7 +329,7 @@ nav ul li a {
     border-color: #e65570; 
 }
 
-/* Estilos para la sección de opiniones */
+
 .titulo-seccion {
     font-size: 24px;
     font-weight: bold;
@@ -390,23 +344,37 @@ nav ul li a {
 .row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centrar las tarjetas de opiniones */
+    justify-content: center; 
+}
+
+.col-md-12 {
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.col-md-6 {
+    flex: 1 1 50%;
+    max-width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .col-md-4 {
-    flex: 1 1 30%;
-    max-width: 30%;
+    flex: 1 1 33.33%;
+    max-width: 33.33%;
     padding: 10px;
     box-sizing: border-box;
 }
 
 .opinion-card {
-    background-color: #282828; /* Fondo oscuro */
+    background-color: #282828; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
-    color: white; /* Texto blanco */
+    color: white; 
 }
 
 .opinion-texto {
@@ -417,18 +385,18 @@ nav ul li a {
 
 .opinion-puntaje {
     font-size: 14px;
-    color: #9F3647; /* Puntaje en color destacado */
+    color: #9F3647; 
 }
 
-/* Estilos para el botón de agregar opinión */
+
 .boton_opinion {
-    background-color: #9F3647; /* Color de fondo */
-    color: white; /* Color de texto */
-    border: none; /* Sin borde */
-    padding: 10px 20px; /* Padding interno */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor tipo puntero */
-    transition: background-color 0.3s ease; /* Transición suave */
+    background-color: #9F3647; 
+    color: white; 
+    border: none; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
     font-weight: bold;
 }
 
@@ -442,21 +410,20 @@ nav ul li a {
     outline: none; 
 }
 
-/* Estilos para la sección de opiniones */
+
 #opiniones {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .opinion {
-    width: calc(30% - 20px); /* Ancho calculado con espacio para el margen */
+    width: calc(30% - 20px); 
     margin-bottom: 20px;
     padding: 20px;
     background-color: #282828;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #ffffff; /* Texto blanco */
+    color: #ffffff; 
 }
 
 .opinion p {
@@ -468,38 +435,32 @@ nav ul li a {
 }
 
 .opinion-puntaje {
-    color: #9F3647; /* Color de puntaje */
+    color: #9F3647; 
     font-size: 14px;
     font-weight: bold;
     margin-top: 5px;
 }
-/* Estilos para el botón de eliminar opinión */
+
 .eliminar-opinion {
     margin-top: 5px;
-    background-color: transparent; /* Color de fondo transparente */
-    color: #dc3545; /* Color del texto */
-    border: none; /* Sin borde */
-    padding: 3px 8px; /* Padding interno más pequeño */
-    border-radius: 3px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor tipo puntero */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
-
-    /* Estilos adicionales opcionales */
-    margin-left: 10px; /* Margen izquierdo */
+    background-color: transparent; 
+    color: #dc3545; 
+    border: none; 
+    padding: 3px 8px;  
+    border-radius: 3px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    margin-left: 10px; 
 }
 
 .eliminar-opinion:hover {
-    background-color: rgba(220, 53, 69, 0.1); /* Color de fondo con transparencia al pasar el mouse */
-    color: #c82333; /* Cambio de color del texto al pasar el mouse */
+    background-color: rgba(220, 53, 69, 0.1); 
+    color: #c82333; 
 }
 
 .eliminar-opinion:focus {
-    outline: none; /* Eliminar el contorno al hacer foco */
+    outline: none; 
 }
-
-
-
-
 
 @media (max-width: 768px) {
     .contenedorTrailer {

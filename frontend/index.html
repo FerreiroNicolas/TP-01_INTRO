@@ -50,7 +50,7 @@
         </section>
         <!-- Para buscar, tendiamos q hacer la base d datos y q haga querys? -->
         <section class="buscadorPrincipal">
-            <h2 class="tituloSection">¿Qué estas buscando para ver?</h2>
+            <h2 class="titulobuscando">¿Qué estas buscando para ver?</h2>
             <form class="buscadorPeliculas">
                 <input class="inputBuscador" type="text" placeholder="Buscar..." id="buscar" name="buscar">
                 <input class="botonBuscador" type="submit" value="Buscar">
@@ -59,8 +59,11 @@
         <hr class="separator">
         <div class="container">
             <section id="tendencias" class="peliculasTendencia">
-                <h3 class="tituloSection">Las tendencias de hoy💯</h3>
-                <h6>Ordenadas de menor a mayor duracion</h6>
+                <h3 class="tituloSection">Las tendencias de hoy</h3>
+                <h6 class="indice">
+                    <span class="punto"></span>
+                    Ordenadas de menor a mayor duración
+                </h6>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3" id="peliculas_tendencia"> <!-- Aca se crearia dinamicamente, con JS, las pelis tendencia --></div>
                 <!-- estos botones capaz deberiamos sacarlos -->
                 <div class="text-center mt-4">
@@ -70,7 +73,7 @@
             </section>
         </div>
         <hr class="separator">
-        <h3 class="text-center mt-4 tituloSection">👑👑Las más aclamadas👑👑</h3>
+        <h3 class="text-center mt-4 tituloSection container">Las más aclamadas</h3>
         <section class="gallery-wrapper">
             <div class="gallery_contenido" id="peliculas_aclamadas">
                 <!-- Aquí se crearán dinámicamente las películas más aclamadas -->
