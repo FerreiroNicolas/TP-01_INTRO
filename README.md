@@ -7,9 +7,7 @@ Segundo trabajo practico a entregar para la materia de Introduccion al desarroll
 
 ### Link a la pagina del proyecto
 
-### [LINK NETLIFY](https://ferreiro-cac-movies.netlify.app)
-
-# Proyecto: CAC-MOVIE
+# Proyecto: Cuevana 8
 
 ## Descripción
 
