@@ -5,8 +5,6 @@ Segundo trabajo practico a entregar para la materia de Introduccion al desarroll
 
 ## Catedra Camejo
 
-### Link a la pagina del proyecto
-
 # Proyecto: Cuevana 8
 
 ## Descripción
