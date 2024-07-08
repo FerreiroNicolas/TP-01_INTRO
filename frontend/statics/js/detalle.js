@@ -13,6 +13,7 @@ if (!id) {
 }
 
 const mainDetalle = document.getElementById('mainDetalle');
+const title_movie = document.getElementById('title_movie')
 const nombre = document.getElementById('nombre');
 const url_imagen = document.getElementById('url_imagen');
 const año_de_estreno = document.getElementById('año_de_estreno');
@@ -36,6 +37,8 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
     })
     .then(data => {
         const movie = data.pelicula;
+        title_movie.innerHTML = `
+        ${movie.nombre_de_pelicula}`;
         mainDetalle.innerHTML = `
             <section class="detalle" data-aos="zoom-in">
                 <div class="contenedorDetalle">
@@ -135,26 +138,30 @@ function renderizarOpiniones(opiniones) {
     if (opiniones && opiniones.length > 0) {
         output += `
             <div class="contenedorOpiniones">
-                <h2>Opiniones de los espectadores</h2>
+                <h2 class="titulo-seccion">¿Qué piensan los espectadores?</h2>
         `;
         opiniones.forEach(opinion => {
             output += `
-                <div class="opinion">
-                    <p><strong>Opinión:</strong> ${opinion.opinion}</p>
-                    <p><strong>Puntaje:</strong> ${opinion.puntaje} /10</p>
-                    <button class="eliminar-opinion" data-id="${opinion.id_opinion}">Eliminar</button>
+                <div class="col-md-12">
+                    <div class="opinion-card">
+                        <p class="opinion-texto"><strong>Fecha y hora de publicaion:</strong> ${opinion.fecha_de_opinion}</p>
+                        <p class="opinion-texto"><strong>Opinión:</strong> ${opinion.opinion}</p>
+                        <p class="opinion-puntaje"><strong>Puntaje:</strong> ${opinion.puntaje} /10</p>
+                        <button class="eliminar-opinion" data-id="${opinion.id_opinion}">Eliminar</button>
+                    </div>
                 </div>
             `;
         });
         output += `</div>`;
     } else {
-        output = '<div class="contenedorOpiniones"><p>No hay opiniones disponibles, se el Primero en opinar sobre esta pelicula.</p></div>';
+        output = '<div class="contenedorOpiniones"><p>No hay opiniones disponibles, sé él primero en opinar sobre esta película!.</p></div>';
     }
     opin.innerHTML = output;
     agregarEventosEliminar();
 }
 
-//aca empieza lo q modifique
+
+
 function agregarEventosEliminar() {
     const botonesEliminar = document.querySelectorAll('.eliminar-opinion');
     botonesEliminar.forEach(boton => {
@@ -207,7 +214,6 @@ function eliminarOpinion(idOpinion) {
         }
     });
 }
-//aca termina
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {

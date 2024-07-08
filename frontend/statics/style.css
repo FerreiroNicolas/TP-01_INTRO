@@ -64,13 +64,13 @@ body::-webkit-scrollbar-track {
 
 .iniciar {
     background-color: black;
-    padding: 6px 10px; /* Reducir el padding */
+    padding: 6px 10px; 
     border-radius: 5px;
     border: none;
 }
 
 .fixed-top {
-    background-color: #9F3647; /* Color de fondo del navbar fijo */
+    background-color: #9F3647; 
 }
 
 .main {
@@ -87,48 +87,7 @@ body::-webkit-scrollbar-track {
     margin-bottom: 20px;
 }
 
-.botonRegistrarse {
-    background-color: #9F3647;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
 
-.botonRegistrarse:hover {
-    background-color: #ff6666;
-}
-
-.sectionPrincipal {
-    background-image: linear-gradient(
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5)
-    ), url('./img/img1.avif'); 
-    background-size: cover; 
-    background-position: center; 
-    color: white; 
-    height: 100vh; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-}
-
-.tituloPrincipal {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.subtituloPrincipal {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    font-weight: 400;
-}
 
 .botonRegistrarse {
     background-color: #9F3647;
@@ -147,6 +106,85 @@ body::-webkit-scrollbar-track {
     transform: scale(0.95); 
 }
 
+.sectionPrincipal {
+    position: relative;
+    background-size: cover; 
+    background-position: center; 
+    color: white; 
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    overflow: hidden; 
+    background-image: linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    );
+}
+
+.back-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: -1; 
+}
+
+.tituloPrincipal {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    z-index: 1; 
+}
+
+.subtituloPrincipal {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+    z-index: 1; 
+}
+
+.botonRegistrarse {
+    background-color: #9F3647;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.5s, transform 0.5s; 
+    z-index: 1; 
+}
+
+.botonRegistrarse:hover {
+    background-color: rgb(226, 207, 207);
+    color: #9F3647;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(0.95); 
+}
+
+.botonRegistrarse {
+    background-color: #9F3647;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.5s, transform 0.5s; 
+}
+
+.botonRegistrarse:hover {
+    background-color: rgb(226, 207, 207);
+    color: #9F3647;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(0.95); 
+}
+
 .peliculasTendencia {
     padding: 40px 0;
 }
@@ -158,6 +196,7 @@ body::-webkit-scrollbar-track {
 
 .pelicula {
     margin-bottom: 20px;
+    
 }
 
 .pelicula img {
@@ -167,15 +206,17 @@ body::-webkit-scrollbar-track {
 
 .tituloPelicula {
     margin-top: 10px;
+    text-align: center;
 }
 
 .boton {
     background-color: #9F3647;
-    color: black;
+    color: rgb(255, 255, 255);
     border: none;
     margin: 10px;
     padding: 10px 20px;
     font-size: 1rem;
+    font-weight: 600;
     text-decoration: none;
     border: 1px solid white;
     border-radius: 5px;
@@ -183,7 +224,8 @@ body::-webkit-scrollbar-track {
 }
 
 .boton:hover {
-    background-color: #9F3647;
+    background-color: rgb(226, 207, 207);
+    color: #9F3647;
     border: 1px solid white;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -211,9 +253,42 @@ body::-webkit-scrollbar-track {
     padding: 0 25vw; 
 }
 
-.tituloSection {
+.titulobuscando {
+    margin-bottom: 30px;
+}
+
+
+.tituloSection{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #9F3647;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
     margin-bottom: 20px;
 }
+
+h6.indice {
+    color: #aaaaaa;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+h6.indice .punto {
+    display: inline-block;
+    width: 8px; /* Tamaño del punto */
+    height: 8px; /* Tamaño del punto */
+    background-color: #9F3647; /* Color del punto */
+    border-radius: 50%; /* Forma circular */
+    margin-right: 5px; /* Espacio entre el punto y el texto */
+    vertical-align: middle; /* Alinear verticalmente con el texto */
+}
+
+
 
 .inputBuscador {
     margin-bottom: 10px;
@@ -231,7 +306,10 @@ body::-webkit-scrollbar-track {
 }
 
 .botonBuscador:hover {
-    background-color: #ff6666;
+    background-color: rgb(226, 207, 207);
+    color: #9F3647;
+    border: 1px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .pelicula {
@@ -244,7 +322,7 @@ body::-webkit-scrollbar-track {
     width: 100%;
     height: auto;
     border-radius: 10px;
-    transition: filter 0.3s; 
+    transition: filter 0.4s; 
 }
 
 .pelicula:hover img {

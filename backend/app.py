@@ -168,6 +168,7 @@ def obtener_pelicula(id):
                     'id_opinion': opinion.id,
                     'opinion': opinion.opinion,
                     'puntaje': opinion.puntaje,
+                    'fecha_de_opinion': opinion.fecha_opinion
                 }
                 opiniones_json.append(opinion_dict)
 
@@ -283,6 +284,7 @@ def borrar_opinion(id):
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': 'Error interno del servidor'}), 500
+ 
 
 if __name__ == '__main__':
     db.init_app(app)
