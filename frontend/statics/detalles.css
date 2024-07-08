@@ -285,6 +285,11 @@ nav ul li a {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
+.modal-body select option {
+    color: #495057;
+    background-color: #fff;
+}
+
 .modal-footer {
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
