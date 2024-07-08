@@ -27,7 +27,7 @@ const puntaje_segun_critica = document.getElementById('puntaje_segun_critica');
 const url_trailer = document.getElementById('url_trailer');
 const es_tendencia = document.getElementById('es_tendencia');
 
-fetch(`http://localhost:5000/detalle/detalle.html${id}`)
+fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -141,6 +141,7 @@ function renderizarOpiniones(opiniones) {
             output += `
                 <div class="col-md-12">
                     <div class="opinion-card">
+                        <p class="opinion-texto"><strong>Fecha y hora de publicaion:</strong> ${opinion.fecha_de_opinion}</p>
                         <p class="opinion-texto"><strong>Opinión:</strong> ${opinion.opinion}</p>
                         <p class="opinion-puntaje"><strong>Puntaje:</strong> ${opinion.puntaje} /10</p>
                         <button class="eliminar-opinion" data-id="${opinion.id_opinion}">Eliminar</button>
@@ -156,8 +157,7 @@ function renderizarOpiniones(opiniones) {
     agregarEventosEliminar();
 }
 
-
-
+//aca empieza lo q modifique
 function agregarEventosEliminar() {
     const botonesEliminar = document.querySelectorAll('.eliminar-opinion');
     botonesEliminar.forEach(boton => {
@@ -210,6 +210,7 @@ function eliminarOpinion(idOpinion) {
         }
     });
 }
+//aca termina
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask,jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from datetime import datetime
@@ -6,17 +6,14 @@ from datetime import datetime
 app = Flask(__name__)
 port = 5000
 
-# app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://joacoeze:joaquinm@localhost:5432/catalogo'
+#app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://joacoeze:joaquinm@localhost:5432/catalogo'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://nicoferreiro:Gatoperro1%23@localhost:5432/catalogo'
 
-# Si quiere, pueden agregar aca lo mismo q puse yo pero con sus DB, asi prueban las cosas. Pero deberiamos comentar la de los otros al hacer push a las ramas.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 
 db = SQLAlchemy(app)
 
 CORS(app)
-
-id = db.Column(db.Integer, primary_key=True,  autoincrement=True)
 
 class catalogo(db.Model):
     __tablename__ = 'catalogo'
@@ -144,7 +141,7 @@ def agregar_pelicula():
         return jsonify({'message': 'Internal server error'}), 500
 
 
-@app.route("/detalle/detalle.html<int:id>", methods=['GET'])
+@app.route("/detalle/detalle.html/<int:id>", methods=['GET'])
 def obtener_pelicula(id):
     try:
         pelicula = catalogo.query.get(id)
@@ -171,6 +168,7 @@ def obtener_pelicula(id):
                     'id_opinion': opinion.id,
                     'opinion': opinion.opinion,
                     'puntaje': opinion.puntaje,
+                    'fecha_de_opinion': opinion.fecha_opinion
                 }
                 opiniones_json.append(opinion_dict)
 
@@ -248,7 +246,7 @@ def publicar_opinion(id):
         print('Error', error)
         return jsonify({'message': 'Internal server error'}), 500
     
-# @app.route("/detalle/detalle.html<int:id>", methods=['PUT'])
+# @app.route("/detalle/detalle.html/<int:id>", methods=['PUT'])
 # def modificar_opinion(id):
 #     try:
 #         data = request.json
@@ -286,8 +284,7 @@ def borrar_opinion(id):
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': 'Error interno del servidor'}), 500
-
-    
+ 
 
 if __name__ == '__main__':
     db.init_app(app)
