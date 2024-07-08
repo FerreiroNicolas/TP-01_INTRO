@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ¿Cambiamos el nombre de la pagina?-->
-    <title>CAC-MOVIES</title> 
+    <title>Cuevana 8</title> 
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="stylesheet" href="statics/style.css">
@@ -18,7 +17,7 @@
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <i class="fas fa-film" aria-hidden="true"></i>
-                    CAC-Movies 
+                    Cuevana 8
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,25 +42,36 @@
         </nav>
     </header>
     <main id="main" class="main">
-        <section class="sectionPrincipal">
+        <section class="sectionPrincipal menu">
+            <video autoplay loop muted class="back-video">
+                <source src="statics/img/video_portada.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
             <h1 class="tituloPrincipal">Películas y series ilimitadas <br> en un solo lugar</h1>
             <h2 class="subtituloPrincipal">Disfruta donde quieras. <br> Cancela en cualquier momento.</h2>
             <a class="botonRegistrarse" href="/registrarse/registro.html">Registrate</a>
         </section>
         <!-- Para buscar, tendiamos q hacer la base d datos y q haga querys? -->
         <section class="buscadorPrincipal">
-            <h2 class="tituloSection">¿Qué estas buscando para ver?</h2>
+            <h2 class="titulobuscando">¿Qué estas buscando para ver?</h2>
             <form class="buscadorPeliculas">
                 <input class="inputBuscador" type="text" placeholder="Buscar..." id="buscar" name="buscar">
                 <input class="botonBuscador" type="submit" value="Buscar">
             </form>
         </section>
         <hr class="separator">
-
         <div class="container">
             <section id="tendencias" class="peliculasTendencia">
+<<<<<<< HEAD
                 <h3 class="tituloSection">Las tendencias de hoy💯</h3>
                 <h6>Ordenadas de menor a mayor duracion</h6>
+=======
+                <h3 class="tituloSection">Las tendencias de hoy</h3>
+                <h6 class="indice">
+                    <span class="punto"></span>
+                    Ordenadas de menor a mayor duración
+                </h6>
+>>>>>>> rama_nico
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3" id="peliculas_tendencia"> <!-- Aca se crearia dinamicamente, con JS, las pelis tendencia --></div>
                 <!-- estos botones capaz deberiamos sacarlos -->
                 <div class="text-center mt-4">
@@ -71,7 +81,11 @@
             </section>
         </div>
         <hr class="separator">
+<<<<<<< HEAD
         <h3 class="text-center mt-4 tituloSection">👑👑Las más aclamadas👑👑</h3>
+=======
+        <h3 class="text-center mt-4 tituloSection container">Las más aclamadas</h3>
+>>>>>>> rama_nico
         <section class="gallery-wrapper">
             <div class="gallery_contenido" id="peliculas_aclamadas">
                 <!-- Aquí se crearán dinámicamente las películas más aclamadas -->

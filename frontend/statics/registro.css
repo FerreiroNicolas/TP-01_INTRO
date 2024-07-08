@@ -110,6 +110,25 @@ input[type="submit"] {
     opacity: 1;
 }
 
+.botonRegistrarse {
+    background-color: #9F3647;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.5s, transform 0.5s; 
+    z-index: 1; 
+}
+
+.botonRegistrarse:hover {
+    background-color: rgb(226, 207, 207);
+    color: #9F3647;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(0.95); 
+}
+
 @media only screen and (max-width: 768px) {
     #nombre, #apellido, #email, #password, #fechaNacimiento, input[type="submit"] {
         width: 80vw; 
