@@ -159,11 +159,11 @@ function renderizarOpiniones(opiniones) {
 
 
 function agregarEventosEliminar() {
-    const botones_eliminar = document.querySelectorAll('.eliminar-opinion');
-    botones_eliminar.forEach(boton => {
+    const botonesEliminar = document.querySelectorAll('.eliminar-opinion');
+    botonesEliminar.forEach(boton => {
         boton.addEventListener('click', function() {
-            const id_opinion = this.getAttribute('data-id');
-            eliminar_opinion(id_opinion);
+            const idOpinion = this.getAttribute('data-id');
+            eliminarOpinion(idOpinion);
         });
     });
 }
@@ -210,7 +210,6 @@ function eliminar_opinion(id_opinion) {
         }
     });
 }
-
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {
