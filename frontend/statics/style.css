@@ -196,7 +196,6 @@ body::-webkit-scrollbar-track {
 
 .pelicula {
     margin-bottom: 20px;
-    
 }
 
 .pelicula img {
@@ -206,7 +205,6 @@ body::-webkit-scrollbar-track {
 
 .tituloPelicula {
     margin-top: 10px;
-    text-align: center;
 }
 
 .boton {
@@ -322,7 +320,7 @@ h6.indice .punto {
     width: 100%;
     height: auto;
     border-radius: 10px;
-    transition: filter 0.4s; 
+    transition: filter 0.3s; 
 }
 
 .pelicula:hover img {

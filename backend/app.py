@@ -1,7 +1,6 @@
-from flask import Flask,jsonify, request
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-from datetime import datetime
+from modelos import db, catalogo, opiniones
 
 app = Flask(__name__)
 port = 5000
@@ -11,38 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://joacoeze:joaquinm@
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 
-db = SQLAlchemy(app)
-
 CORS(app)
-
-class catalogo(db.Model):
-    __tablename__ = 'catalogo'
-    id = db.Column(db.Integer, primary_key=True,  autoincrement=True)
-    nombre_de_pelicula = db.Column(db.String(100), nullable=False)
-    url_imagen = db.Column(db.String(400))
-    año_de_estreno = db.Column(db.Integer)
-    genero = db.Column(db.String(100))
-    duracion = db.Column(db.Integer)
-    sinopsis = db.Column(db.String(1000))
-    director = db.Column(db.String(200))
-    actores_principales = db.Column(db.String(300))
-    productora = db.Column(db.String(100))
-    pais_de_origen = db.Column(db.String(100))
-    puntaje_segun_critica = db.Column(db.Integer)
-    url_trailer = db.Column(db.Text)
-    es_tendencia = db.Column(db.Boolean)
-    opiniones = db.relationship('opiniones', backref='catalogo', lazy=True)
-
-
-class opiniones(db.Model):
-    __tablename__ = 'opiniones'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    id_pelicula = db.Column(db.Integer, db.ForeignKey('catalogo.id'), nullable=False)
-    opinion = db.Column(db.Text, nullable=False)
-    puntaje = db.Column(db.Numeric(3, 1), nullable=False)
-    fecha_opinion = db.Column(db.DateTime, default=datetime.now)
-
-
 
 @app.route("/index.html", methods=['GET'])
 def inicio():
@@ -287,7 +255,10 @@ def borrar_opinion(id):
  
 
 if __name__ == '__main__':
+    print('iniciando server...')
     db.init_app(app)
     with app.app_context():
         db.create_all()
     app.run(host='0.0.0.0', debug=True, port=port)
+    print('iniciado')
+

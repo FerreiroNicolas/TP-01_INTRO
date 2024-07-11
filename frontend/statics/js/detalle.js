@@ -13,7 +13,6 @@ if (!id) {
 }
 
 const mainDetalle = document.getElementById('mainDetalle');
-const title_movie = document.getElementById('title_movie')
 const nombre = document.getElementById('nombre');
 const url_imagen = document.getElementById('url_imagen');
 const año_de_estreno = document.getElementById('año_de_estreno');
@@ -37,8 +36,6 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
     })
     .then(data => {
         const movie = data.pelicula;
-        title_movie.innerHTML = `
-        ${movie.nombre_de_pelicula}`;
         mainDetalle.innerHTML = `
             <section class="detalle" data-aos="zoom-in">
                 <div class="contenedorDetalle">
@@ -154,25 +151,24 @@ function renderizarOpiniones(opiniones) {
         });
         output += `</div>`;
     } else {
-        output = '<div class="contenedorOpiniones"><p>No hay opiniones disponibles, sé él primero en opinar sobre esta película!.</p></div>';
+        output = '<div class="contenedorOpiniones"><p>No hay opiniones disponibles, sé el primero en opinar sobre esta película.</p></div>';
     }
     opin.innerHTML = output;
     agregarEventosEliminar();
 }
 
 
-
 function agregarEventosEliminar() {
-    const botonesEliminar = document.querySelectorAll('.eliminar-opinion');
-    botonesEliminar.forEach(boton => {
+    const botones_eliminar = document.querySelectorAll('.eliminar-opinion');
+    botones_eliminar.forEach(boton => {
         boton.addEventListener('click', function() {
-            const idOpinion = this.getAttribute('data-id');
-            eliminarOpinion(idOpinion);
+            const id_opinion = this.getAttribute('data-id');
+            eliminar_opinion(id_opinion);
         });
     });
 }
 
-function eliminarOpinion(idOpinion) {
+function eliminar_opinion(id_opinion) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: 'Esta acción eliminará la opinión. ¿Quieres continuar?',
@@ -182,7 +178,7 @@ function eliminarOpinion(idOpinion) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/detalle/detalle.html/${idOpinion}`, {
+            fetch(`http://localhost:5000/detalle/detalle.html/${id_opinion}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -214,6 +210,7 @@ function eliminarOpinion(idOpinion) {
         }
     });
 }
+
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {
