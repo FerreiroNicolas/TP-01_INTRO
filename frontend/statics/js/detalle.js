@@ -157,7 +157,7 @@ function renderizarOpiniones(opiniones) {
     agregarEventosEliminar();
 }
 
-
+//aca empieza lo q modifique
 function agregarEventosEliminar() {
     const botonesEliminar = document.querySelectorAll('.eliminar-opinion');
     botonesEliminar.forEach(boton => {
@@ -168,7 +168,7 @@ function agregarEventosEliminar() {
     });
 }
 
-function eliminar_opinion(id_opinion) {
+function eliminarOpinion(idOpinion) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: 'Esta acción eliminará la opinión. ¿Quieres continuar?',
@@ -178,7 +178,7 @@ function eliminar_opinion(id_opinion) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/detalle/detalle.html/${id_opinion}`, {
+            fetch(`http://localhost:5000/detalle/detalle.html/${idOpinion}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -210,6 +210,7 @@ function eliminar_opinion(id_opinion) {
         }
     });
 }
+//aca termina
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {
