@@ -128,6 +128,7 @@ def obtener_pelicula(id):
                 'pais_de_origen': pelicula.pais_de_origen,
                 'puntaje_segun_critica': pelicula.puntaje_segun_critica,
                 'url_trailer': pelicula.url_trailer,
+                'es_tendencia': pelicula.es_tendencia
             }
 
             opiniones_json = []
@@ -261,4 +262,3 @@ if __name__ == '__main__':
         db.create_all()
     app.run(host='0.0.0.0', debug=True, port=port)
     print('iniciado')
-

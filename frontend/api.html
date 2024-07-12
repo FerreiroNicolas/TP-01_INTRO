@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuevana 8</title>
+    <title>Cuevana 8 | Catalogo</title>
     <link rel="shortcut icon" href="../statics/img/logo2.png" type="image/x-icon">
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="statics/agregar_peliculas.css">
@@ -41,7 +41,6 @@
         </nav>
     </header>
 
-    <!-- Modal para agregar película -->
     <div class="modal fade" id="modalAgregarPelicula" tabindex="-1" aria-labelledby="modalAgregarPeliculaLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -67,28 +66,30 @@
                             <label for="genero">Género:</label>
                             <select class="form-control" id="genero" required>
                                 <option value="" disabled selected>Selecciona un género</option>
-                                <option value="Accion y Artes marciales">Accion y Artes marciales</option>
+                                <option value="Accion">Accion</option>
+                                <option value="Artes marciales">Artes marciales</option>
                                 <option value="Animación">Animación</option>
-                                <option value="Cine bélico, cine biográfico">Cine bélico y cine biográfico</option>
+                                <option value="Cine bélico">Cine bélico</option>
+                                <option value="cine biográfico">Cine biográfico</option>
                                 <option value="CienciaFiccion">Ciencia Ficcion</option>
+                                <option value="Comedia">Comedia</option>
                                 <option value="Crimen">Crimen</option>
                                 <option value="Documental">Documental</option>
                                 <option value="Drama">Drama</option>
                                 <option value="Fantasía y Aventura">Fantasía y Aventura</option>
-                                <option value="Historico">Historico</option>
+                                <option value="Gangsters">Gangsters</option>|
+                                <option value="Historica Epica">Historica Epica</option>
                                 <option value="Humor negro">Humor negro</option>
                                 <option value="Infantil">Infantil</option>
                                 <option value="Romantica">Romantica</option>
                                 <option value="Suspenso">Suspenso</option>
                                 <option value="Superheroes">Superheroes</option>
-                                <option value="Terror">Terror</option>
-
-                                <!-- Añadir más opciones aquí -->
+                                <option value="Terror">Terror</option>|
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="duracion">Duración (minutos):</label>
-                            <input type="number" class="form-control" id="duracion" placeholder="Duración (minutos)" required>
+                            <input type="number" class="form-control" id="duracion" placeholder=" 120 minutos" required>
                         </div>
                         <div class="mb-3">
                             <label for="sinopsis">Sinopsis:</label>
@@ -96,15 +97,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="director">Director:</label>
-                            <input type="text" class="form-control" id="director" placeholder="Director" required>
+                            <input type="text" class="form-control" id="director" placeholder="Christopher Nolan" required>
                         </div>
                         <div class="mb-3">
                             <label for="actores_principales">Actores principales:</label>
-                            <input type="text" class="form-control" id="actores_principales" placeholder="Actores principales" required>
+                            <input type="text" class="form-control" id="actores_principales" placeholder="Keeanu Reves, Christian bale y Morgan Friedman" required >
                         </div>
                         <div class="mb-3">
                             <label for="productora">Productora:</label>
-                            <input type="text" class="form-control" id="productora" placeholder="Productora" required>
+                            <input type="text" class="form-control" id="productora" placeholder="Warner Bros studios" required >
                         </div>
                         <div class="mb-3">
                             <label for="pais_de_origen">País de origen:</label>
@@ -116,7 +117,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="url_trailer">URL del tráiler:</label>
-                            <input type="text" class="form-control" id="url_trailer" placeholder="URL del tráiler" required>
+                            <input type="text" class="form-control" id="url_trailer" placeholder="https://www.youtube.com/embed/8OCj5LvhJis?si=IaNrtYlY_-Fsnx0d" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="es_tendencia">

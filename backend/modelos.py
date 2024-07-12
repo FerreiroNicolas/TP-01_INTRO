@@ -21,7 +21,7 @@ class catalogo(db.Model):
     puntaje_segun_critica = db.Column(db.Integer)
     url_trailer = db.Column(db.Text)
     es_tendencia = db.Column(db.Boolean)
-    opiniones = db.relationship('opiniones', backref='catalogo', lazy=True)
+    opiniones = db.relationship('opiniones')
 
 
 class opiniones(db.Model):

@@ -1,27 +1,6 @@
 function response_recibed(response) {
     return response.json();
 }
-    
-function data(data) {
-    const movies = data.peliculas;
-    let output = '';
-    movies.forEach(movie => {
-        output += `
-            <div class="col-md-3 mb-4">
-                <a href="/detalle/detalle.html?id=${movie.id}" style="text-decoration: none;">
-                    <div class="card">
-                        <img src="${movie.url_imagen}" class="card-img-top" alt="${movie.nombre_de_pelicula}">
-                            <div class="card-body">
-                                <h5 class="card-title">${movie.nombre_de_pelicula}</h5>
-                                <p class="card-text">Año: ${movie.año_de_estreno}</p>
-                            </div>
-                    </div>
-                </a>
-            </div>
-            `;
-        });
-        document.getElementById('api-movies').innerHTML = output;
-}
 
 function parse_data(data) {
     const movies = data.peliculas;
@@ -75,11 +54,12 @@ function request_error(error) {
 
 fetch('http://localhost:5000/api.html')
     .then(response_recibed)
-    .then(data)
+    .then(parse_data)
     .catch(request_error);
-// Función para agregar película
+    
+    
 document.getElementById('form-agregar-pelicula').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    event.preventDefault();
 
     const formData = {
         nombre_de_pelicula: document.getElementById('nombre').value,
@@ -102,23 +82,21 @@ document.getElementById('form-agregar-pelicula').addEventListener('submit', func
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData), // Convierte el objeto formData a JSON
+        body: JSON.stringify(formData),
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Error al agregar película');
         }
-        return response.json(); // Parsea la respuesta JSON del backend
+        return response.json();
     })
     .then(data => {
         console.log('Película agregada:', data);
-        cargarPeliculas(); // Vuelve a cargar la lista de películas
+        cargarPeliculas();
 
-        // Cerrar el modal usando Bootstrap 5
         var modalElement = bootstrap.Modal.getInstance(document.getElementById('modalAgregarPelicula'));
         modalElement.hide();
-        
-        // Mostrar mensaje de éxito usando SweetAlert2
+
         Swal.fire({
             title: 'Película agregada',
             text: 'La película se agregó correctamente.',
@@ -129,8 +107,6 @@ document.getElementById('form-agregar-pelicula').addEventListener('submit', func
     })
     .catch(error => {
         console.error('Error al agregar película:', error);
-
-        // Mostrar mensaje de error usando SweetAlert2
         Swal.fire({
             title: 'Error',
             text: 'Error al agregar película, por favor inténtalo de nuevo.',
@@ -140,7 +116,6 @@ document.getElementById('form-agregar-pelicula').addEventListener('submit', func
     });
 });
 
-// Función para cargar películas al iniciar la página
 function cargarPeliculas() {
     fetch('http://localhost:5000/api.html')
         .then(response => {
@@ -150,7 +125,7 @@ function cargarPeliculas() {
             return response.json();
         })
         .then(data => {
-            parse_data(data); // Utiliza la función parse_data para actualizar la interfaz
+            parse_data(data);
         })
         .catch(error => {
             console.error('Error al cargar las películas:', error);

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Detalle | Cuevana 8</title>
+        <title id="title_movie"></title>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="../statics/img/logo2.png" type="image/x-icon">
@@ -74,9 +74,6 @@
 
         </main>
         
-
-
-
         <footer class="footer">
             <nav>
                 <ul>
@@ -88,7 +85,6 @@
             </nav>
         </footer>
 
-        <!-- Modal para editar película -->
         <div class="modal fade" id="modalEditarPelicula" tabindex="-1" aria-labelledby="modalEditarPeliculaLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -114,21 +110,25 @@
                                 <label for="genero">Género:</label>
                                 <select class="form-control" id="genero" required>
                                     <option value="" disabled selected>Selecciona un género</option>
-                                    <option value="Accion y Artes marciales">Accion y Artes marciales</option>
+                                    <option value="Accion">Accion</option>
+                                    <option value="Artes marciales">Artes marciales</option>
                                     <option value="Animación">Animación</option>
-                                    <option value="Cine bélico, cine biográfico">Cine bélico y cine biográfico</option>
+                                    <option value="Cine bélico">Cine bélico</option>
+                                    <option value="cine biográfico">Cine biográfico</option>
                                     <option value="CienciaFiccion">Ciencia Ficcion</option>
+                                    <option value="Comedia">Comedia</option>
                                     <option value="Crimen">Crimen</option>
                                     <option value="Documental">Documental</option>
                                     <option value="Drama">Drama</option>
                                     <option value="Fantasía y Aventura">Fantasía y Aventura</option>
-                                    <option value="Historico">Historico</option>
+                                    <option value="Gangsters">Gangsters</option>|
+                                    <option value="Historica Epica">Historica Epica</option>
                                     <option value="Humor negro">Humor negro</option>
                                     <option value="Infantil">Infantil</option>
                                     <option value="Romantica">Romantica</option>
                                     <option value="Suspenso">Suspenso</option>
                                     <option value="Superheroes">Superheroes</option>
-                                    <option value="Terror">Terror</option>
+                                    <option value="Terror">Terror</option>|
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -137,7 +137,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="sinopsis">Sinopsis:</label>
-                                <textarea class="form-control" id="sinopsis" rows="3" placeholder="Sinopsis" required></textarea>
+                                <textarea class="form-control" id="sinopsis" rows="3" placeholder="Sinopsis" required ></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="director">Director:</label>
@@ -164,7 +164,7 @@
                                 <input type="text" class="form-control" id="url_trailer" placeholder="URL del tráiler" required>
                             </div>
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="es_tendencia">
+                                <input type="checkbox" class="form-check-input" id="es_tendencia" name="es_tendencia">
                                 <label class="form-check-label" for="es_tendencia">Es tendencia</label>
                             </div>
                         </form>
@@ -187,17 +187,15 @@
                 const editarPeliculaLink = document.getElementById('editarPeliculaLink');
 
                 editarPeliculaLink.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevenir la acción por defecto del enlace
+                    event.preventDefault();
 
-                    // Activar el modal usando Bootstrap 5
                     var modal = new bootstrap.Modal(document.getElementById('modalEditarPelicula'));
                     modal.show();
                 });
 
-                // Manejar evento cuando el modal se cierra
                 var modalEditarPelicula = document.getElementById('modalEditarPelicula');
                 modalEditarPelicula.addEventListener('hidden.bs.modal', function () {
-                    window.location.reload(); // Recargar la página cuando se cierra el modal
+                    window.location.reload();
                 });
             });
 
