@@ -47,11 +47,10 @@
                 <source src="./statics/img/video_portada.mp4" type="video/mp4">
                 Tu navegador no soporta la etiqueta de video.
             </video>
-            <h1 class="tituloPrincipal">Películas y series ilimitadas <br> en un solo lugar</h1>
-            <h2 class="subtituloPrincipal">Disfruta donde quieras. <br> Cancela en cualquier momento.</h2>
-            <a class="botonRegistrarse" href="/registrarse/registro.html">Registrate</a>
+            <h1 class="tituloPrincipal">Películas ilimitadas <br> en un solo lugar</h1>
+            <h2 class="subtituloPrincipal">Disfruta donde quieras y como quieras. <br> Mira aqui todas nuestras epliculas</h2>
+            <a class="botonCatalogo" href="api.html">Catalogo</a>
         </section>
-        <!-- Para buscar, tendiamos q hacer la base d datos y q haga querys? -->
         <section class="buscadorPrincipal">
             <h2 class="titulobuscando">¿Qué estas buscando para ver?</h2>
             <form class="buscadorPeliculas">
@@ -67,11 +66,7 @@
                     <span class="punto"></span>
                     Ordenadas de menor a mayor duración
                 </h6>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3" id="peliculas_tendencia"> <!-- Aca se crearia dinamicamente, con JS, las pelis tendencia --></div>
-                <!-- estos botones capaz deberiamos sacarlos -->
-                <div class="text-center mt-4">
-                    <button class="btn btn-primary boton anterior">Anterior</button>  
-                    <button class="btn btn-primary boton siguiente">Siguiente</button>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3" id="peliculas_tendencia">
                 </div>
             </section>
         </div>
@@ -79,7 +74,6 @@
         <h3 class="text-center mt-4 tituloSection container">Las más aclamadas</h3>
         <section class="gallery-wrapper">
             <div class="gallery_contenido" id="peliculas_aclamadas">
-                <!-- Aquí se crearán dinámicamente las películas más aclamadas -->
             </div>
         </section>
 

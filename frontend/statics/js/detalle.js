@@ -13,6 +13,7 @@ if (!id) {
 }
 
 const mainDetalle = document.getElementById('mainDetalle');
+const title_movie = document.getElementById('title_movie')
 const nombre = document.getElementById('nombre');
 const url_imagen = document.getElementById('url_imagen');
 const año_de_estreno = document.getElementById('año_de_estreno');
@@ -36,6 +37,7 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
     })
     .then(data => {
         const movie = data.pelicula;
+        title_movie.innerHTML = `${movie.nombre_de_pelicula}`;
         mainDetalle.innerHTML = `
             <section class="detalle" data-aos="zoom-in">
                 <div class="contenedorDetalle">
@@ -43,11 +45,13 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
                         <img src="${movie.url_imagen}" alt="${movie.nombre_de_pelicula} poster de película">
                     </div>
                     <div class="textoDetalle">
-                        <h1>${movie.nombre_de_pelicula}</h1> 
+                        <h1><strong>${movie.nombre_de_pelicula}</strong></h1>
                         <p>Año de estreno: ${movie.año_de_estreno}</p> 
-                        <p>Género: ${movie.genero}</p>
-                        <p>Duración: ${movie.duracion} minutos</p>
-                        <h2>Sinopsis</h2> 
+                        <h3>Género</h3> 
+                        <p>${movie.genero}</p>
+                        <h3>Duración</h3> 
+                        <p> ${movie.duracion} minutos</p>
+                        <h3>Sinopsis</h3> 
                         <p>${movie.sinopsis}</p>
                         <div class="contenedorCreditos">
                             <div>
@@ -107,11 +111,11 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
         puntaje_segun_critica.value = movie.puntaje_segun_critica;
         url_trailer.value = movie.url_trailer;
         es_tendencia.checked = movie.es_tendencia;
-        renderizarOpiniones(data.opiniones);
-        // Mostrar el modal de editar película solo cuando se hace clic en el enlace
+        
+        renderizar_opiniones(data.opiniones);
         const editarPeliculaLink = document.getElementById('editarPeliculaLink');
         editarPeliculaLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevenir la acción por defecto del enlace
+            event.preventDefault();
 
             var myModal = new bootstrap.Modal(document.getElementById('modalEditarPelicula'), {
                 keyboard: false
@@ -129,7 +133,7 @@ fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
         });
     });
 
-function renderizarOpiniones(opiniones) {
+function renderizar_opiniones(opiniones) {
     const opin = document.getElementById('opiniones');
     let output = '';
     if (opiniones && opiniones.length > 0) {
@@ -157,18 +161,17 @@ function renderizarOpiniones(opiniones) {
     agregarEventosEliminar();
 }
 
-//aca empieza lo q modifique
 function agregarEventosEliminar() {
-    const botonesEliminar = document.querySelectorAll('.eliminar-opinion');
-    botonesEliminar.forEach(boton => {
+    const botones_eliminar = document.querySelectorAll('.eliminar-opinion');
+    botones_eliminar.forEach(boton => {
         boton.addEventListener('click', function() {
-            const idOpinion = this.getAttribute('data-id');
-            eliminarOpinion(idOpinion);
+            const id_opinion = this.getAttribute('data-id');
+            eliminar_opinion(id_opinion);
         });
     });
 }
 
-function eliminarOpinion(idOpinion) {
+function eliminar_opinion(id_opinion) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: 'Esta acción eliminará la opinión. ¿Quieres continuar?',
@@ -178,7 +181,7 @@ function eliminarOpinion(idOpinion) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/detalle/detalle.html/${idOpinion}`, {
+            fetch(`http://localhost:5000/detalle/detalle.html/${id_opinion}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -210,12 +213,10 @@ function eliminarOpinion(idOpinion) {
         }
     });
 }
-//aca termina
 
 const formEditarPelicula = document.getElementById('form-editar-pelicula');
 formEditarPelicula.addEventListener('submit', function(event) {
     event.preventDefault();
-
     const data = {
         nombre_de_pelicula: nombre.value,
         url_imagen: url_imagen.value,
@@ -271,19 +272,16 @@ formEditarPelicula.addEventListener('submit', function(event) {
 const formAgregarOpinion = document.getElementById('formAgregarOpinion');
 
 formAgregarOpinion.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el envío del formulario por defecto
+    event.preventDefault();
 
-    // Obtener los valores del formulario
     const opinion = document.getElementById('opinion').value;
     const puntaje = document.getElementById('puntaje').value;
 
-    // Datos a enviar al servidor
     const data = {
         opinion: opinion,
-        puntaje: parseFloat(puntaje) // Convertir a número decimal
+        puntaje: parseFloat(puntaje)
     };
 
-    // Realizar la solicitud POST al servidor
     fetch(`http://localhost:5000/detalle/detalle.html/${id}`, {
         method: 'POST',
         headers: {
@@ -298,27 +296,21 @@ formAgregarOpinion.addEventListener('submit', function(event) {
         return response.json();
     })
     .then(data => {
-        // Limpiar el formulario después de enviar la opinión
         formAgregarOpinion.reset();
 
-        // Verificar si hay opiniones en la respuesta del servidor
         if (data.opiniones && data.opiniones.length > 0) {
-            // Renderizar las opiniones actualizadas
-            renderizarOpiniones(data.opiniones);
+            renderizar_opiniones(data.opiniones);
         } else {
-            // Mostrar un mensaje de que no hay opiniones disponibles
             const opin = document.getElementById('opiniones');
             opin.innerHTML = '<div class="contenedorOpiniones"><p>No hay opiniones disponibles.</p></div>';
         }
 
-        // Opcional: mostrar mensaje de éxito
         Swal.fire({
             icon: 'success',
             title: '¡Éxito!',
             text: 'Opinión agregada exitosamente',
             confirmButtonText: 'Aceptar'
         }).then(() => {
-            // Recargar la página después de mostrar el mensaje
             location.reload();
         });
     })

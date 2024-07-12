@@ -4,7 +4,7 @@ function response_recibed(response) {
 
 function data_inicio(data) {
     const tendencias = data.tendencias;
-    const masAclamadas = data.mas_aclamadas;
+    const mas_aclamadas = data.mas_aclamadas;
 
     let outputTendencias = '';
     let outputAclamadas = '';
@@ -22,7 +22,7 @@ function data_inicio(data) {
         `;
     });
 
-    masAclamadas.forEach(pelicula => {
+    mas_aclamadas.forEach(pelicula => {
         outputAclamadas += `
             <div class="gallery-item">
                 <a href="/detalle/detalle.html?id=${pelicula.id}">
