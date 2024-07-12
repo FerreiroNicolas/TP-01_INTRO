@@ -19,18 +19,22 @@ Este proyecto fue desarrollado en grupo como parte de la materia "Introducción 
 
 ***
 
-El objetivo principal fue crear un sitio web con diversas peliculas y funciones dignas de un sitio para cines.
+El objetivo principal fue crear un sitio web con diversas peliculas y funciones dignas de un sitio para cines.Siempre conectando un frontend, un backend y una base de datos.
 
 ***
 
 ## Características.
 
-Es un sitio que cuenta con las siguientes secciones:
+Es un sitio que cuenta con las siguientes secciones o caracteristicas:
 
-+ Tendencias
-+ Registrarse
-+ Iniciar sesion 
-+ Conexion API
++ Peliculas que son tendencia.
++ Peliculas mas aclamadas.
++ Un catalogo lleno de peliculas.
++ El detalle de cada pelicula.
++ Poder agregar y/o editar peliculas.
++ La seccion de "opiniones" dentro del detalle de cada pelicula.
++ Poder postear y/o eliminar una opinion sobre esa pelicula.
++ Poder llenar un formulario para registarse, aunque no te creas un usuario como tal sino que te llega un mail con los datos ingresados.
 
 #### Repositorio a Git-Hub
 
