@@ -12,7 +12,7 @@ function data_inicio(data) {
     tendencias.forEach(pelicula => {
         outputTendencias += `
             <div class="col">
-                <a href="/detalle/detalle.html?id=${pelicula.id}">
+                <a href="/detalle/?id=${pelicula.id}">
                     <div class="pelicula">
                         <img src="${pelicula.url_imagen}" alt="${pelicula.nombre_de_pelicula}">
                         <h4 class="tituloPelicula">${pelicula.nombre_de_pelicula}</h4>
@@ -25,7 +25,7 @@ function data_inicio(data) {
     mas_aclamadas.forEach(pelicula => {
         outputAclamadas += `
             <div class="gallery-item">
-                <a href="/detalle/detalle.html?id=${pelicula.id}">
+                <a href="/detalle/?id=${pelicula.id}">
                     <img src="${pelicula.url_imagen}" alt="${pelicula.nombre_de_pelicula}">
                 </a>
             </div>
@@ -41,7 +41,7 @@ function request_error(error) {
     console.error('Error al recuperar datos de películas:', error);
 }
 
-fetch('http://localhost:5000/index.html')
+fetch('http://localhost:5000/')
     .then(response_recibed)
     .then(data_inicio)
     .catch(request_error);

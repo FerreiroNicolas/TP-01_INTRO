@@ -13,7 +13,7 @@ function parse_data(data) {
         item.setAttribute("class", "col-md-3 mb-4");
 
         const link = document.createElement("a");
-        link.setAttribute("href", `/detalle/detalle.html?id=${movie.id}`);
+        link.setAttribute("href", `/detalle/?id=${movie.id}`);
         link.setAttribute("style", "text-decoration: none;");
 
         const card = document.createElement("div");
@@ -52,7 +52,7 @@ function request_error(error) {
     document.getElementById('api-movies').innerHTML = '<p>No se pudieron cargar los datos de películas.</p>';
 }
 
-fetch('http://localhost:5000/api.html')
+fetch('http://localhost:5000/catalogo')
     .then(response_recibed)
     .then(parse_data)
     .catch(request_error);
@@ -77,7 +77,7 @@ document.getElementById('form-agregar-pelicula').addEventListener('submit', func
         es_tendencia: document.getElementById('es_tendencia').checked
     };
 
-    fetch('http://localhost:5000/api.html', {
+    fetch('http://localhost:5000/catalogo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -102,8 +102,9 @@ document.getElementById('form-agregar-pelicula').addEventListener('submit', func
             text: 'La película se agregó correctamente.',
             icon: 'success',
             confirmButtonText: 'Aceptar'
+        }).then(() => {
+            location.reload();
         });
-
     })
     .catch(error => {
         console.error('Error al agregar película:', error);
@@ -117,7 +118,7 @@ document.getElementById('form-agregar-pelicula').addEventListener('submit', func
 });
 
 function cargarPeliculas() {
-    fetch('http://localhost:5000/api.html')
+    fetch('http://localhost:5000/catalogo')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al cargar películas');
