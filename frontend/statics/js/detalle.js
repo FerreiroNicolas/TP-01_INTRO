@@ -28,7 +28,7 @@ const puntaje_segun_critica = document.getElementById('puntaje_segun_critica');
 const url_trailer = document.getElementById('url_trailer');
 const es_tendencia = document.getElementById('es_tendencia');
 
-fetch(`http://localhost:5000/detalle/detalle.html/${id}`)
+fetch(`http://localhost:5000/detalle/${id}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -181,7 +181,7 @@ function eliminar_opinion(id_opinion) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/detalle/detalle.html/${id_opinion}`, {
+            fetch(`http://localhost:5000/detalle/${id_opinion}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -233,7 +233,7 @@ formEditarPelicula.addEventListener('submit', function(event) {
         es_tendencia: es_tendencia.checked
     };
 
-    fetch(`http://localhost:5000/detalle/detalle.html/${id}`, {
+    fetch(`http://localhost:5000/detalle/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -282,7 +282,7 @@ formAgregarOpinion.addEventListener('submit', function(event) {
         puntaje: parseFloat(puntaje)
     };
 
-    fetch(`http://localhost:5000/detalle/detalle.html/${id}`, {
+    fetch(`http://localhost:5000/detalle/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

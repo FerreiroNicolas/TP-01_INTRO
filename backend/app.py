@@ -8,11 +8,12 @@ port = 5000
 app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://joacoeze:joaquinm@localhost:5432/catalogo'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://nicoferreiro:Gatoperro1%23@localhost:5432/catalogo'
 
+#app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://joaquin:joaquinm@localhost:5432/catalogo'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 
 CORS(app)
 
-@app.route("/index.html", methods=['GET'])
+@app.route("/", methods=['GET'])
 def inicio():
     try:
         tendencias = catalogo.query.filter(catalogo.es_tendencia == True).order_by(catalogo.duracion.asc()).all()
@@ -46,7 +47,7 @@ def inicio():
         return jsonify({'message': 'Internal server error'}), 500
 
 
-@app.route("/api.html", methods=['GET'])
+@app.route("/catalogo", methods=['GET'])
 def mostrar_peliculas():
     try:
         peliculas = catalogo.query.order_by(catalogo.nombre_de_pelicula).all()
@@ -65,7 +66,7 @@ def mostrar_peliculas():
         return jsonify({'message': 'Internal server error'}), 500
 
 
-@app.route("/api.html", methods=['POST'])
+@app.route("/catalogo", methods=['POST'])
 def agregar_pelicula():
     try:
         data = request.json
@@ -109,7 +110,7 @@ def agregar_pelicula():
         return jsonify({'message': 'Internal server error'}), 500
 
 
-@app.route("/detalle/detalle.html/<int:id>", methods=['GET'])
+@app.route("/detalle/<int:id>", methods=['GET'])
 def obtener_pelicula(id):
     try:
         pelicula = catalogo.query.get(id)
@@ -148,7 +149,7 @@ def obtener_pelicula(id):
         print('Error:', error)
         return jsonify({'message': 'Error interno del servidor'}), 500
 
-@app.route("/detalle/detalle.html/<int:id>", methods=['PUT'])
+@app.route("/detalle/<int:id>", methods=['PUT'])
 def modificar_pelicula(id):
     try:
         data = request.json
@@ -192,7 +193,7 @@ def modificar_pelicula(id):
         print('Error:', error)
         return jsonify({'message': 'Error interno del servidor'}), 500
     
-@app.route("/detalle/detalle.html/<int:id>", methods=['POST'])
+@app.route("/detalle/<int:id>", methods=['POST'])
 def publicar_opinion(id):
     try:
         data = request.json
@@ -215,7 +216,7 @@ def publicar_opinion(id):
         print('Error', error)
         return jsonify({'message': 'Internal server error'}), 500
     
-# @app.route("/detalle/detalle.html/<int:id>", methods=['PUT'])
+# @app.route("/detalle/<int:id>", methods=['PUT'])
 # def modificar_opinion(id):
 #     try:
 #         data = request.json
@@ -239,7 +240,7 @@ def publicar_opinion(id):
 #         print('Error', error)
 #         return jsonify({'message': 'Internal server error'}), 500
     
-@app.route("/detalle/detalle.html/<int:id>", methods=['DELETE'])
+@app.route("/detalle/<int:id>", methods=['DELETE'])
 def borrar_opinion(id):
     try:
         opinion = opiniones.query.get(id)
